@@ -40,6 +40,8 @@ enemy1 = Enemy("Regular Monster", 50, 10, 10, 10, False)
 enemy2 = Enemy("Squad Leader Monster", 75, 20, 20, 15, False)
 enemy3 = Enemy("Elite Monster", 100, 30, 30, 30, False)
 enemy4 = Enemy("Spy", 30, 5, 10, 0, False)
+enemy5 = Enemy("Boss", 150, 50, 40, 45, False)
+
 
 
 
