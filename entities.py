@@ -1,20 +1,26 @@
 # Player stat sheet
 
-class Player:
-    def __init__(self, name, hp, atk, dfn, armor, tf_stage, is_cursed, is_defeated, is_caught):
+class Entity:
+    def __init__(self, name, hp, atk, dfn, armor, is_dead, is_cursed):
         self.name = name
         self.hp = hp
         self.atk = atk
         self.dfn = dfn
         self.armor = armor
-        self.tf_stage = 0
-        self.is_cursed = False
-        is_defeated = False
-        is_caught = False
-
+        self.is_dead = is_dead
+        self.is_cursed = is_cursed
 
     def take_dmg(self, dmg):
-        self.health -= dmg
+        self.hp -= dmg
+        if self.hp <= 0:
+            self.hp = 0
+            self.is_dead = True
+
+class Player(Entity):
+    def __init__(self, name, hp, atk, dfn, armor, is_dead, is_cursed, is_caught, tf_stage):
+        super().__init__(name, hp, atk, dfn, armor, is_dead, is_cursed)
+        self.tf_stage = 0
+        self.is_caught = False
 
 
 # Apply curse to player
@@ -23,25 +29,23 @@ class Player:
         self.curse_level = 1
         print(f"You feel weird...")
 
+class Enemy(Entity):
+    def __init__(self, name, hp, atk, dfn, armor, is_dead, is_cursed):
+        super().__init__(name, hp, atk, dfn, armor, is_dead, is_cursed)
+
+class RegularMonster(Enemy):
+    def __init__(self, name, hp, atk, dfn, armor, is_dead, is_cursed):
+        super().__init__(name, hp, atk, dfn, armor, is_dead, is_cursed)
+
+    def grab(self, target):
+        pass
 
 
-class Enemy:
-    def __init__(self, name, hp, atk, dfn, armor, is_defeated):
-        self.name = name
-        self.hp = hp
-        self.atk = atk
-        self.dfn = dfn
-        self.armor = armor
-        is_defeated = False
-
-
-
-enemy1 = Enemy("Regular Monster", 50, 10, 10, 10, False)
-enemy2 = Enemy("Squad Leader Monster", 75, 20, 20, 15, False)
-enemy3 = Enemy("Elite Monster", 100, 30, 30, 30, False)
-enemy4 = Enemy("Spy", 30, 5, 10, 0, False)
-enemy5 = Enemy("Boss", 150, 50, 40, 45, False)
-
+enemy1 = Enemy("Regular Monster", 50, 10, 10, 10, False, False)
+enemy2 = Enemy("Squad Leader Monster", 75, 20, 20, 15, False, False)
+enemy3 = Enemy("Elite Monster", 100, 30, 30, 30, False, False)
+enemy4 = Enemy("Spy", 30, 5, 10, 0, False, False)
+enemy5 = Enemy("Boss", 150, 50, 40, 45, False, False)
 
 
 
