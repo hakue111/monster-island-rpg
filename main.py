@@ -1,4 +1,5 @@
 import random
+import antigravity
 from settings import *
 from os.path import join
 from entities import Player
@@ -6,14 +7,15 @@ from entities import Player
 
 def start_game():
     answer = input("Would you like to experience what Monster Island has in store for you? (yes/no)\n > ")
-    if answer.lower().strip() == "no":
+    if answer.casefold().strip() == "no".casefold():
         print("That's too bad...Oh well, maybe next time?")
-    elif answer.lower().strip() == "yes":
+    elif answer.casefold().strip() == "yes".casefold():
         print("Welcome to 'MONSTER ISLAND'!")
         input("Press Enter to continue...")
         boarding()
     elif answer != "yes" or answer != "no":
-        print("Invalid input. Please answer (yes/no) and press Enter.\n> ")
+        print("Invalid input.")
+        start_game()
 
 def boarding():
     print("You have won a free vacation on Monster Island.")
@@ -33,7 +35,7 @@ def boarding():
     print(f"Mysterious man: Welcome to Monster Island, {name_choice}. Enjoy your stay...")
     print("There are three places you can go now: The hotel, the mansion and the forest. Where do you go?")
     choice = input("Please enter where you want to go (hotel/mansion/forest)\n>")
-    if choice.lower().strip() == "hotel":
+    if choice.casefold().strip() == "hotel":
         print(f"{name_choice} goes to the hotel.")
         hotel()
     elif choice.lower().strip() == "mansion":
@@ -49,23 +51,23 @@ def boarding():
 start_game()
 
 
-hotel()
-print("You enter the hotel. A bellboy is greeting you and takes your luggage.")
-print("The bellboy takes you to your hotel room.")
-input("Press Enter to continue...")
-print(f"Bellboy: 'This is your room, {name_choice}. Have fun...\n The bellboy leaves.")
-choice = input("Do you want to stay and rest for a while? (yes/no)\n> ")
-if choice == "yes":
-    print("You decide to get some rest in your hotel room.")
-    print("You get some hours of sleep...")
-    input("Press Enter to continue...")
-    hotel_wake()
+#hotel()
+#print("You enter the hotel. A bellboy is greeting you and takes your luggage.")
+#print("The bellboy takes you to your hotel room.")
+#input("Press Enter to continue...")
+#print(f"Bellboy: 'This is your room, {name_choice}. Have fun...\n The bellboy leaves.")
+#choice = input("Do you want to stay and rest for a while? (yes/no)\n> ")
+#if choice == "yes":
+ #   print("You decide to get some rest in your hotel room.")
+  #  print("You get some hours of sleep...")
+   # input("Press Enter to continue...")
+    #hotel_wake()
 
 
-mansion()
+#mansion()
 pass
 
-forest()
+#forest()
 pass
 
 

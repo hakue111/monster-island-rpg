@@ -1,5 +1,3 @@
-# Player stat sheet
-
 class Entity:
     def __init__(self, name, hp, atk, dfn, armor, is_dead, is_cursed):
         self.name = name
