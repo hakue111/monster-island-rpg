@@ -1,5 +1,5 @@
 import random
-import antigravity
+from gambler_stand import gambler_stand
 from settings import *
 from os.path import join
 from entities import Player
@@ -31,21 +31,23 @@ def boarding():
     print(f"The ferry horn honks and the ship departs. Soon, the mainland will be out of sight.")
     print(f"{name_choice}, you are going on a dark and mysterious adventure. Be careful...")
     input("Press Enter to continue...")
+
     print("You arrive on Monster Island. You are greeted by the mysterious man")
     print(f"Mysterious man: Welcome to Monster Island, {name_choice}. Enjoy your stay...")
-    print("There are three places you can go now: The hotel, the mansion and the forest. Where do you go?")
-    choice = input("Please enter where you want to go (hotel/mansion/forest)\n>")
-    if choice.casefold().strip() == "hotel":
-        print(f"{name_choice} goes to the hotel.")
-        hotel()
-    elif choice.lower().strip() == "mansion":
-        print(f"{name_choice} goes to the mansion.")
-        mansion()
-    elif choice.lower().strip() == "forest":
-        print(f"{name_choice} goes to the forest")
-        forest()
-    else:
-        print("Invalid input. Please input hotel/mansion/forest and press Enter")
+    print("There are three places you can go now: The Hotel, the gambler stand and the forest. Where do you go?")
+    while True:
+        choice = input("Please enter where you want to go (Hotel/Gambler Stand/forest)\n>")
+        if choice.casefold().strip() == "Hotel".casefold():
+            print(f"{name_choice} goes to the Hotel.")
+            hotel()
+        elif choice.casefold().strip() == "Gambler Stand".casefold():
+            print(f"{name_choice} goes to the Gambler Stand.")
+            gambler_stand()
+        elif choice.casefold().strip() == "Forest".casefold():
+            print(f"{name_choice} goes to the Forest")
+            forest()
+        else:
+            print("Invalid input. Please input Hotel/Gambler Stand/Forest and press Enter")
 
 
 start_game()
@@ -69,6 +71,18 @@ pass
 
 #forest()
 pass
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

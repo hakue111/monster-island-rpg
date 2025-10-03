@@ -5,14 +5,30 @@ class Entity:
         self.atk = atk
         self.dfn = dfn
         self.armor = armor
-        self.is_dead = is_dead
         self.is_cursed = is_cursed
+
+    def is_dead(self):
+        if self.hp <= 0:
+            return True
+        else:
+            return False
 
     def take_dmg(self, dmg):
         self.hp -= dmg
         if self.hp <= 0:
             self.hp = 0
             self.is_dead = True
+
+    def calc_dmg(self, target):
+        # basic formula: atk minus target defense and armor
+        dmg = self.atk - (target.dfn + target.armor)
+        return max(0, dmg)
+
+    def attack(self):
+        if self.is_dead:
+            return 0
+
+
 
 class Player(Entity):
     def __init__(self, name, hp, atk, dfn, armor, is_dead, is_cursed, is_caught, tf_stage):
