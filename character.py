@@ -41,9 +41,7 @@ class Hero(Character):
         self.weapon = self.default_weapon
 
 
-
-
-
+player:Hero
 
 
 

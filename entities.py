@@ -8,7 +8,7 @@ class Entity:
         self.is_cursed = is_cursed
 
 
-    def attack(self, target): -> None
+    def attack(self, target) -> None:
         target.hp -= self.dmg
         target.hp -= max(target.hp, 0)
 

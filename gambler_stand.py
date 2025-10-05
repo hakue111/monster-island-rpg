@@ -1,5 +1,13 @@
 import random
 
+import character
+from battle_scene import *
+from character import *
+from weapon import *
+
+gambler: Enemy = Enemy("Gambler", 50, fists)
+
+
 annoyance = 0
 
 def shell_game():
@@ -49,5 +57,7 @@ def gambler_stand():
 
 def gambler_pissed():
     print("SHUT THE FUCK UP I'M GONNA KILL YOU!")
-    #(
+
+    start_battle(character.player, gambler)
+
 

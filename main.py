@@ -2,8 +2,8 @@ import random
 from gambler_stand import gambler_stand
 from settings import *
 from os.path import join
-from entities import Player
-
+from character import *
+import character
 
 def start_game():
     answer = input("Would you like to experience what Monster Island has in store for you? (yes/no)\n > ")
@@ -26,6 +26,7 @@ def boarding():
     input("Press Enter to continue...")
     print("Mysterious Man: What is your name?")
     name_choice = input("@Player: Please enter your name and press Enter:\n> ")
+    character.player = Hero(name_choice, 100)
     print(f"Mysterious Man: So, you are {name_choice}? Very well. Please board the ferry. We are departing soon.")
     print(f'{name_choice} boards the ferry.')
     print(f"The ferry horn honks and the ship departs. Soon, the mainland will be out of sight.")
@@ -48,6 +49,10 @@ def boarding():
             forest()
         else:
             print("Invalid input. Please input Hotel/Gambler Stand/Forest and press Enter")
+
+
+
+
 
 
 start_game()

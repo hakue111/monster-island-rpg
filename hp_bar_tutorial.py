@@ -9,10 +9,6 @@
 # an update method to update its current value
 # a draw method to print it to the screen
 
-import os
-
-os.system("")
-
 class HpBar:
     symbol_remaining: str = "█"
     symbol_lost: str = "_"
