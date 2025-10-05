@@ -7,17 +7,18 @@ class Entity:
         self.armor = armor
         self.is_cursed = is_cursed
 
+
+    def attack(self, target): -> None
+        target.hp -= self.dmg
+        target.hp -= max(target.hp, 0)
+
+
+
     def is_dead(self):
-        if self.hp <= 0:
-            return True
-        else:
-            return False
+        return self.hp <= 0
 
     def take_dmg(self, dmg):
         self.hp -= dmg
-        if self.hp <= 0:
-            self.hp = 0
-            self.is_dead = True
 
     def calc_dmg(self, target):
         # basic formula: atk minus target defense and armor
@@ -25,8 +26,10 @@ class Entity:
         return max(0, dmg)
 
     def attack(self):
-        if self.is_dead:
+        if self.is_dead():
             return 0
+
+
 
 
 
@@ -35,7 +38,6 @@ class Player(Entity):
         super().__init__(name, hp, atk, dfn, armor, is_dead, is_cursed)
         self.tf_stage = 0
         self.is_caught = False
-
 
 # Apply curse to player
     def apply_curse(self):

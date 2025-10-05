@@ -49,4 +49,5 @@ def gambler_stand():
 
 def gambler_pissed():
     print("SHUT THE FUCK UP I'M GONNA KILL YOU!")
+    #(
 
