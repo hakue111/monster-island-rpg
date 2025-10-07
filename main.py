@@ -1,4 +1,5 @@
 import random
+import item_sheet
 from gambler_stand import gambler_stand
 from settings import *
 from os.path import join
@@ -27,7 +28,10 @@ def boarding():
     print("Mysterious Man: What is your name?")
     name_choice = input("@Player: Please enter your name and press Enter:\n> ")
     character.player = Hero(name_choice, 100)
-    print(f"Mysterious Man: So, you are {name_choice}? Very well. Please board the ferry. We are departing soon.")
+    print(f"Mysterious Man: So, you are {name_choice}? Please board the ferry. We are departing soon.")
+    print(f"Mysterious Man: By the way, I have something useful for you.")
+    # give player a potion
+    character.player.add_consumable(item_sheet.potion, 5)
     print(f'{name_choice} boards the ferry.')
     print(f"The ferry horn honks and the ship departs. Soon, the mainland will be out of sight.")
     print(f"{name_choice}, you are going on a dark and mysterious adventure. Be careful...")

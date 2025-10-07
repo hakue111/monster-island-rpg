@@ -46,7 +46,7 @@ def gambler_stand():
     print(f"Very well. Let's begin!")
     has_won = shell_game()
     if has_won is None:
-        gambler_pissed()
+        gambler_fight()
     elif has_won is True:
         print("Lucky shot...")
         # receive item
@@ -55,7 +55,7 @@ def gambler_stand():
         # lose item
 
 
-def gambler_pissed():
+def gambler_fight():
     print("SHUT THE FUCK UP I'M GONNA KILL YOU!")
     result = start_battle(character.player, gambler)
     if result == "win":
