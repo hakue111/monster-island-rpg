@@ -1,5 +1,5 @@
 from weapon import *
-from hp_bar_tutorial import HpBar
+from hp_bar import HpBar
 
 class Character:
 
@@ -19,6 +19,11 @@ class Character:
         target.hp = max(target.hp, 0)
         target.hp_bar.update()
         print(f"{self.name} dealt {self.weapon.dmg} damage to {target.name} with {self.weapon.name}")
+
+
+    def is_dead(self):
+        return self.hp <= 0
+
 
 
 class Hero(Character):

@@ -42,9 +42,6 @@ def enemy_attack():
 
 
 
-
-
-
 def start_fight():
     if player_spd >= enemy_spd:
         player_attack()

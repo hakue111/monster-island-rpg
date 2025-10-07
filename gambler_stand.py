@@ -57,7 +57,10 @@ def gambler_stand():
 
 def gambler_pissed():
     print("SHUT THE FUCK UP I'M GONNA KILL YOU!")
-
-    start_battle(character.player, gambler)
+    result = start_battle(character.player, gambler)
+    if result == "win":
+        print("The gambler dies. Lol.")
+    elif result == "lose":
+        print("You died (lol). Game Over!")
 
 
