@@ -13,9 +13,9 @@ current_room = "Island Docks"
 
 rooms = {
     "Island Docks" : {
-                "north": "Carnival"
+                "north": "Gambler Stand"
     },
-    "Carnival": {
+    "Gambler Stand": {
                 "north": "Forest",
                 "west": "Hotel",
                 "east": "The Bar",

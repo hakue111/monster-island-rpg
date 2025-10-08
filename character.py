@@ -26,7 +26,10 @@ class Character:
         for has_item in self.consumables:
             if has_item.name == item.name:
                 has_item.amount += amount
-                print(f"Received {item.name} x{amount}!\n{self.name} put {item.name}(s) in the inventory.")
+                if amount >0:
+                    print(f"Received {item.name} x{amount}!\n{self.name} put {item.name}(s) in the inventory.")
+                else:
+                    print(f"Lost {amount}x {item.name}!")
                 return None
         item.amount = amount
         self.consumables.append(item)
@@ -41,6 +44,8 @@ class Character:
             del self.consumables[index]
         return True
 
+    # basically INVENTORY
+    # bc we want to print consumable items in fights, not key items
     def print_consumables(self):
         print("Inventory: ")
         i: int = 0
