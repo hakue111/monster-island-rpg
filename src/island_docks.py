@@ -1,25 +1,11 @@
-import random
-
+import character
 import item_sheet
 from battle_scene import start_battle
+from character import Enemy, Hero
 from gambler_stand import GamblerRoom
 from room_state import Room
-from settings import *
-from os.path import join
-from character import *
-import character
+from weapon import iron_sword
 
-def start_game():
-    answer = input("Would you like to experience what Monster Island has in store for you? (yes/no)\n > ")
-    if answer.casefold().strip() == "no".casefold():
-        print("That's too bad...Oh well, maybe next time?")
-    elif answer.casefold().strip() == "yes".casefold():
-        print("Welcome to 'MONSTER ISLAND'!")
-        input("Press Enter to continue...")
-        IslandDocks("Island Docks", "Docks of the island, lol.").boarding()
-    elif answer != "yes" or answer != "no":
-        print("Invalid input.")
-        start_game()
 
 class IslandDocks(Room):
     def __init__(self, name: str,
@@ -70,47 +56,3 @@ class IslandDocks(Room):
             print("The Mysterious Man died.")
         elif result == "lose":
             print("You died (lol). Game Over!")
-
-
-start_game()
-
-
-
-
-
-#hotel()
-#print("You enter the hotel. A bellboy is greeting you and takes your luggage.")
-#print("The bellboy takes you to your hotel room.")
-#input("Press Enter to continue...")
-#print(f"Bellboy: 'This is your room, {name_choice}. Have fun...\n The bellboy leaves.")
-#choice = input("Do you want to stay and rest for a while? (yes/no)\n> ")
-#if choice == "yes":
- #   print("You decide to get some rest in your hotel room.")
-  #  print("You get some hours of sleep...")
-   # input("Press Enter to continue...")
-    #hotel_wake()
-
-
-#mansion()
-pass
-
-#forest()
-pass
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
