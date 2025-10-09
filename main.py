@@ -2,7 +2,7 @@ import random
 
 import item_sheet
 from battle_scene import start_battle
-from gambler_stand import gambler_stand
+from gambler_stand import GamblerRoom
 from room_state import Room
 from settings import *
 from os.path import join
@@ -16,7 +16,7 @@ def start_game():
     elif answer.casefold().strip() == "yes".casefold():
         print("Welcome to 'MONSTER ISLAND'!")
         input("Press Enter to continue...")
-        boarding()
+        IslandDocks("Island Docks", "Docks of the island, lol.").boarding()
     elif answer != "yes" or answer != "no":
         print("Invalid input.")
         start_game()
@@ -26,20 +26,20 @@ class IslandDocks(Room):
                  description:str
                  ):
         super().__init__(name, description)
-        self.mystery_man: Enemy = Enemy("Mysterious Man",300, iron_sword)
+        self.mystery_man: Enemy = Enemy("Mystery Man",100, iron_sword)
 
     def boarding(self):
         print("You have won a free vacation on Monster Island.")
         print("The name already indicates that this island means danger.")
         input("Press Enter to continue...")
         print("You are standing on the docks. With your baggage and your ticket in your hands, you are about to board the ferry.")
-        print("A mysterious man checks your ticket.")
+        print("The ferryman checks your ticket.")
         input("Press Enter to continue...")
-        print("Mysterious Man: What is your name?")
+        print("Ferryman: What is your name?")
         name_choice = input("@Player: Please enter your name and press Enter:\n> ")
         character.player = Hero(name_choice, 100)
-        print(f"Mysterious Man: So, you are {name_choice}? Please board the ferry. We are departing soon.")
-        print(f"Mysterious Man: By the way, I have something useful for you.")
+        print(f"Ferryman: So, you are {name_choice}? Please board the ferry. We are departing soon.")
+        print(f"Ferryman: By the way, I have something useful for you.")
         # give player a potion
         character.player.add_consumable(item_sheet.potion, 5)
         print(f'{name_choice} boards the ferry.')
@@ -47,8 +47,8 @@ class IslandDocks(Room):
         print(f"{name_choice}, you are going on a dark and mysterious adventure. Be careful...")
         input("Press Enter to continue...")
 
-        print("You arrive on Monster Island. You are greeted by the mysterious man")
-        print(f"Mysterious man: Welcome to Monster Island, {name_choice}. Enjoy your stay...")
+        print("You arrive on Monster Island. You are greeted by the Mystery Man.")
+        print(f"Mysterious Man: Welcome to Monster Island, {name_choice}. Enjoy your stay...")
         print("There are three places you can go now: The Hotel, the gambler stand and the Beach. Where do you go?")
         while True:
             choice = input("Please enter where you want to go (Hotel/Gambler Stand/Beach)\n>")
@@ -57,7 +57,7 @@ class IslandDocks(Room):
                 hotel()
             elif choice.casefold().strip() == "Gambler Stand".casefold():
                 print(f"{name_choice} goes to the Gambler Stand.")
-                gambler_stand()
+                GamblerRoom().gambler_stand()
             elif choice.casefold().strip() == "Beach".casefold():
                 print(f"{name_choice} goes to the Forest")
                 forest()

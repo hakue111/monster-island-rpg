@@ -7,14 +7,10 @@ from weapon import *
 from room_state import Room
 
 class GamblerRoom(Room):
-    def __init__(self, name: str,
-                 description: str
-                 ):
-        super().__init__(name, description)
+    def __init__(self):
+        super().__init__("Gambler Room", "A place for gambling")
         self.gambler: Enemy = Enemy("Gambler", 50, fists)
         self.annoyance: int = 0
-
-
 
     def shell_game(self):
         print("The Gambler shuffles the shells.")
@@ -50,13 +46,13 @@ class GamblerRoom(Room):
                 self.annoyance += 1
             if self.annoyance >= 3:
                 print(f"If you don't want to play, I will have to kill you!!")
-                gambler_fight()
+                self.gambler_fight()
         if self.annoyance <3:
             print(f"Very well. Let's begin!")
-            has_won = shell_game()
+            has_won = self.shell_game()
             if has_won is None:
                 print("Shut the FUCK UP!! I'M GONNA KILL YOU!")
-                gambler_fight()
+                self.gambler_fight()
             elif has_won is True:
                 print("Lucky shot...")
                 character.player.add_consumable(item_sheet.potion, 1)
@@ -71,5 +67,6 @@ class GamblerRoom(Room):
             print("The gambler dies.")
         elif result == "lose":
             print("You died (lol). Game Over!")
+            exit()
 
 
