@@ -32,7 +32,7 @@ class GamblerRoom(Room):
                 print(f"The correct shell was shell no. {shuffled}")
                 return False
 
-    def gambler_stand(self):
+    def gambler_scene(self):
         print("You enter the shell game stand.")
         print(f"Gambler: Hello, would you like to play a game?\nIt's simple: I will hide this little ball under one of three shells.\nI will then shuffle the shells. You have one guess.")
         print(f"But don't try to piss me off!")
@@ -42,17 +42,21 @@ class GamblerRoom(Room):
             if choice.casefold().strip() == "yes".casefold():
                 accepted = True
             else:
-                print(f"Gambler: Come on, it's free...")
+                print(f"...")
                 self.annoyance += 1
-            if self.annoyance >= 3:
-                print(f"If you don't want to play, I will have to kill you!!")
-                self.gambler_fight()
+            if self.annoyance == 1:
+                print(f"Come one, please decide and stop wasting my time.")
+            elif self.annoyance == 2:
+                print("Please decide, you're starting to piss me off!")
+            elif self.annoyance >= 3:
+                print(f"STOP. PISSING. ME. OFF!")
+                self.fight_gambler()
         if self.annoyance <3:
             print(f"Very well. Let's begin!")
             has_won = self.shell_game()
             if has_won is None:
-                print("Shut the FUCK UP!! I'M GONNA KILL YOU!")
-                self.gambler_fight()
+                print("Shut the fuck up and let's fight instead!")
+                self.fight_gambler()
             elif has_won is True:
                 print("Lucky shot...")
                 character.player.add_consumable(item_sheet.potion, 1)
@@ -61,7 +65,7 @@ class GamblerRoom(Room):
                 character.player.add_consumable(item_sheet.potion, -1)
 
 
-    def gambler_fight(self):
+    def fight_gambler(self):
         result = start_battle(character.player, self.gambler)
         if result == "win":
             print("The gambler dies.")

@@ -25,3 +25,7 @@ fists = Weapon(name = "Fists",
                dmg = 2,
                value = 0)
 
+robot_claw = Weapon(name = "Robot Claw",
+                    weapon_type = "mechanical",
+                    dmg = 10,
+                    value = 50)

@@ -79,7 +79,7 @@ class Hero(Character):
                  name: str,
                  hp: int,
                  ) -> None:
-        super().__init__(name = name, hp = hp)
+        super().__init__(name, hp)
 
         self.default_weapon = self.weapon
         self.hp_bar = HpBar(self, color = "green")
@@ -104,7 +104,7 @@ class Enemy(Character):
                  hp: int,
                  weapon
                  ) -> None:
-        super().__init__(name = name, hp = hp)
+        super().__init__(name, hp)
     # Enemy only has one weapon so it does not need equip method
         self.weapon = weapon
 

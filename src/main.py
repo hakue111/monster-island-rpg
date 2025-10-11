@@ -7,7 +7,7 @@ def start_game():
     elif answer.casefold().strip() == "yes".casefold():
         print("Welcome to 'MONSTER ISLAND'!")
         input("Press Enter to continue...")
-        IslandDocks("Island Docks", "Docks of the island, lol.").boarding()
+        IslandDocks("Island Docks", "You begin your journey here.").boarding()
     elif answer != "yes" or answer != "no":
         print("Invalid input.")
         start_game()
