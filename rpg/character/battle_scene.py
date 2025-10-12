@@ -1,9 +1,11 @@
 from rpg.character.character import Hero, Enemy
 from rpg.character.outcome import Outcome
 from rpg.item import weapons
+from rpg.util.clear_screen import clear_screen
 
 
 def start_battle(hero: Hero, enemy: Enemy) -> Outcome:
+    clear_screen()
     hero.equip(weapons.iron_sword)
     hero.hp_bar.draw()
     enemy.hp_bar.draw()

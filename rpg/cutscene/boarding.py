@@ -3,21 +3,23 @@ from time import sleep
 from rpg.cutscene.cutscene import Cutscene
 from rpg.game import Game
 from rpg.item import item_sheet
+from rpg.util.clear_screen import clear_screen
 
 
 class BoardingScene(Cutscene):
     def run(self, game: Game):
+        clear_screen()
         print("One day, as you open your mail, you find a MYSTERIOUS ENVELOPE")
         print("The letter inside proudly proclaims that you've won a free vacation on MONSTER ISLAND")
         print()
-        sleep(2)
+        sleep(1)
         print("That's curious, you think to yourself, you don't remember playing the lottery...")
         print()
-        sleep(2)
+        sleep(1)
         print("The next morning.")
         print("You are standing on the docks.")
         print("With your baggage and your ticket in your hands, you are about to board the ferry.")
-        sleep(2)
+        sleep(1)
         print("Ferryman: What is your name?")
 
         name_choice = input("> ")
@@ -37,4 +39,4 @@ class BoardingScene(Cutscene):
         sleep(2)
         print("You arrive on Monster Island. You are greeted by the Mystery Man.")
         print(f"Mystery Man: Welcome to Monster Island, {game.hero.name}. Enjoy your stay...")
-        sleep(2)
+        sleep(1)

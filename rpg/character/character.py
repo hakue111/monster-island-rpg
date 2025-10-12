@@ -3,6 +3,7 @@ import typing
 from rpg.character.hp_bar import HpBar
 from rpg.item import weapons
 from rpg.item.weapon import Weapon
+from rpg.util.format_color import Color
 
 if typing.TYPE_CHECKING:
     from rpg.item.item import ConsumableItem, KeyItem
@@ -82,7 +83,7 @@ class Hero(Character):
         super().__init__(name, hp)
 
         self.default_weapon = self.weapon
-        self.hp_bar = HpBar(self, color="green")
+        self.hp_bar = HpBar(self, color=Color.GREEN)
 
     def equip(self, weapon: Weapon) -> None:
         self.weapon = weapon
@@ -103,4 +104,4 @@ class Enemy(Character):
         # Enemy only has one weapon so it does not need equip method
         self.weapon = weapons.fists
 
-        self.hp_bar = HpBar(self, color="red")
+        self.hp_bar = HpBar(self, color=Color.RED)
