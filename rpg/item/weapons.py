@@ -1,14 +1,4 @@
-class Weapon:
-    def __init__(self,
-                 name: str,
-                 weapon_type: str,
-                 dmg: int,
-                 value: int):
-        self.name = name
-        self.weapon_type = weapon_type
-        self.dmg = dmg
-        self.value = value
-
+from rpg.item.weapon import Weapon
 
 iron_sword = Weapon(name="Iron Sword",
                     weapon_type="sharp",

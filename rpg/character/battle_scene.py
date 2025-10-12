@@ -1,11 +1,10 @@
-from typing import Literal
+from rpg.character.character import Hero, Enemy
+from rpg.character.outcome import Outcome
+from rpg.item import weapons
 
-from rpg.character import *
-from rpg.weapon import *
 
-
-def start_battle(hero: Hero, enemy: Enemy) -> Literal["win", "lose"]:
-    hero.equip(iron_sword)
+def start_battle(hero: Hero, enemy: Enemy) -> Outcome:
+    hero.equip(weapons.iron_sword)
     hero.hp_bar.draw()
     enemy.hp_bar.draw()
     while True:
@@ -23,10 +22,10 @@ def start_battle(hero: Hero, enemy: Enemy) -> Literal["win", "lose"]:
 
         if hero.is_dead():
             print("You lose! Game Over!")
-            return "lose"
+            return Outcome.LOSS
         elif enemy.is_dead():
             print(f"{enemy.name} is defeated!")
-            return "win"
+            return Outcome.WIN
 
 
 def fight(hero: Hero, enemy: Enemy, skip_player: bool):

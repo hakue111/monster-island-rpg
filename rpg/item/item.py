@@ -1,4 +1,9 @@
-from rpg.effect import *
+import typing
+
+from rpg.item.effect import Effect
+
+if typing.TYPE_CHECKING:
+    from rpg.character.character import Character
 
 
 class Item:
@@ -24,7 +29,7 @@ class ConsumableItem(Item):
     def add_effect(self, effect: Effect) -> None:
         self.effects.append(effect)
 
-    def consume_item(self, character: Character):
+    def consume_item(self, character: 'Character'):
         for effect in self.effects:
             effect.apply_effect(character)
 

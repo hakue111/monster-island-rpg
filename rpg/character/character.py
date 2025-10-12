@@ -1,10 +1,11 @@
-from typing import TYPE_CHECKING
+import typing
 
-from rpg.hp_bar import HpBar
-from rpg.weapon import fists
+from rpg.character.hp_bar import HpBar
+from rpg.item import weapons
+from rpg.item.weapon import Weapon
 
-if TYPE_CHECKING:
-    from rpg.item import ConsumableItem, KeyItem
+if typing.TYPE_CHECKING:
+    from rpg.item.item import ConsumableItem, KeyItem
 
 
 class Character:
@@ -21,20 +22,21 @@ class Character:
         self.consumables: list['ConsumableItem'] = []
         self.key_items: list['KeyItem'] = []
 
-        self.weapon = fists
+        self.weapon = weapons.fists
 
     def add_consumable(self, item: 'ConsumableItem', amount: int):
-        for has_item in self.consumables:
-            if has_item.name == item.name:
-                has_item.amount += amount
+        for existing_item in self.consumables:
+            if existing_item.name == item.name:
+                existing_item.amount += amount
                 if amount > 0:
-                    print(f"Received {item.name} x{amount}!\n{self.name} put {item.name}(s) in the inventory.")
+                    print(f"Received {item.name} x{amount}!")
                 else:
                     print(f"Lost {amount}x {item.name}!")
-                return None
-        item.amount = amount
-        self.consumables.append(item)
-        print(f"Received {item.name} x{amount}!\n{self.name} put {item.name}(s) in the inventory.")
+                return
+        if amount > 0:
+            item.amount = amount
+            self.consumables.append(item)
+            print(f"Received {item.name} x{amount}!")
 
     def use_consumable(self, index: int):
         if index < 0 or index >= len(self.consumables):
@@ -82,7 +84,7 @@ class Hero(Character):
         self.default_weapon = self.weapon
         self.hp_bar = HpBar(self, color="green")
 
-    def equip(self, weapon) -> None:
+    def equip(self, weapon: Weapon) -> None:
         self.weapon = weapon
         print(f"{self.name} equipped a(n) {self.weapon.name}!")
 
@@ -91,17 +93,14 @@ class Hero(Character):
     # self.weapon = self.default_weapon
 
 
-player: Hero
-
-
 class Enemy(Character):
     def __init__(self,
                  name: str,
                  hp: int,
-                 weapon
+                 weapon: Weapon,
                  ) -> None:
         super().__init__(name, hp)
         # Enemy only has one weapon so it does not need equip method
-        self.weapon = weapon
+        self.weapon = weapons.fists
 
         self.hp_bar = HpBar(self, color="red")
