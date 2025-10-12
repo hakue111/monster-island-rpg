@@ -10,6 +10,11 @@ short_bow = Weapon(name="Short Bow",
                    dmg=4,
                    value=8)
 
+dagger = Weapon(name="Dagger",
+                weapon_type="sharp",
+                dmg=3,
+                value=7)
+
 fists = Weapon(name="Fists",
                weapon_type="blunt",
                dmg=2,

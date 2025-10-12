@@ -89,10 +89,6 @@ class Hero(Character):
         self.weapon = weapon
         print(f"{self.name} equipped a(n) {self.weapon.name}!")
 
-    # def drop(self) -> None:
-    # print(f"{self.name} dropped the {self.weapon.name}!")
-    # self.weapon = self.default_weapon
-
 
 class Enemy(Character):
     def __init__(self,
@@ -102,6 +98,6 @@ class Enemy(Character):
                  ) -> None:
         super().__init__(name, hp)
         # Enemy only has one weapon so it does not need equip method
-        self.weapon = weapons.fists
+        self.weapon = weapon
 
         self.hp_bar = HpBar(self, color=Color.RED)

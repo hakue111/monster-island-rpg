@@ -2,7 +2,7 @@ from time import sleep
 
 from rpg.cutscene.cutscene import Cutscene
 from rpg.game import Game
-from rpg.item import item_sheet
+from rpg.item import item_sheet, weapons
 from rpg.util.clear_screen import clear_screen
 
 
@@ -31,6 +31,9 @@ class BoardingScene(Cutscene):
 
         game.hero.add_consumable(item_sheet.potion, 5)
 
+        print(f"Ferryman: And take one of these for your journey:")
+        self.pick_weapon(game)
+
         print(f"{game.hero.name} boards the Ferry.")
         sleep(1)
         print(f"The Ferry horn honks and the ship departs. Soon, the mainland will be out of sight.")
@@ -40,3 +43,22 @@ class BoardingScene(Cutscene):
         print("You arrive on Monster Island. You are greeted by the Mystery Man.")
         print(f"Mystery Man: Welcome to Monster Island, {game.hero.name}. Enjoy your stay...")
         sleep(1)
+
+
+    def pick_weapon(self, game: Game):
+        print(f"1: Iron Sword\n2: Short Bow\n3: Dagger")
+        user_choice = input("> ")
+        if user_choice == "1":
+            print("Ferryman: 'An excellent choice!'")
+            game.hero.equip(weapons.iron_sword)
+            return
+        if user_choice == "2":
+            print("Ferryman: 'A clever choice!'")
+            game.hero.equip(weapons.short_bow)
+            return
+        if user_choice == "3":
+            print("Ferryman: 'A dangerous choice! Oh well, you do you!'")
+            game.hero.equip(weapons.dagger)
+            return
+        print(f"You have to pick one, do you really think you can kill those monster on MONSTER ISLAND with your fists??! DUMBASS")
+        self.pick_weapon(game)

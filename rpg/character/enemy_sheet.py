@@ -4,4 +4,5 @@ from rpg.character.character import Enemy
 
 mystery_man: Enemy = Enemy("Mystery Man", 80, iron_sword)
 gambler: Enemy = Enemy("Gambler", 30, fists)
-robot_bellboy: Enemy = Enemy("Robot Bellboy", 1000, robot_claw)
+robot_bellboy: Enemy = Enemy("Robot Bellboy", 200, robot_claw)
+#huge_crab

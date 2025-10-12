@@ -6,7 +6,6 @@ from rpg.util.clear_screen import clear_screen
 
 def start_battle(hero: Hero, enemy: Enemy) -> Outcome:
     clear_screen()
-    hero.equip(weapons.iron_sword)
     hero.hp_bar.draw()
     enemy.hp_bar.draw()
     while True:

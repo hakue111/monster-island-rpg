@@ -128,7 +128,7 @@ class DoorIslandDocks(RoomObject):
 
     def interact(self, game: Game, room: Room, interaction: str):
         if interaction == DoorIslandDocks.GOTO:
-            print("You're walking towards the gambler stand.")
+            print("You're walking back towards the docks.")
             game.select_room("island_docks")
 
 class GamblerStand(Room):
