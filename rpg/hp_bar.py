@@ -24,6 +24,7 @@ class HpBar:
                     "white": "\033[97m",
                     "red": "\033[91m"
                     }
+
     def __init__(self,
                  entity,
                  length: int = 20,
@@ -38,13 +39,11 @@ class HpBar:
         self.is_colored = is_colored
         self.color = self.colors.get(color) or self.colors["default"]
 
-
     def update(self) -> None:
         self.current_value = self.entity.hp
 
-
     def draw(self) -> None:
-        remaining_bars = round(self.current_value/ self.max_value * self.length)
+        remaining_bars = round(self.current_value / self.max_value * self.length)
         lost_bars = self.length - remaining_bars
         print(f"{self.entity.name}'s HP: {self.entity.hp}/{self.entity.hp_max}")
         print(f"{self.barrier}"
@@ -53,4 +52,3 @@ class HpBar:
               f"{lost_bars * self.symbol_lost}"
               f"{self.colors['default'] if self.is_colored == True else ''}"
               f"{self.barrier}")
-

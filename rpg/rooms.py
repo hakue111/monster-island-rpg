@@ -12,14 +12,14 @@ inventory = []
 current_room = "Island Docks"
 
 rooms = {
-    "Island Docks" : {
-                "north": "Gambler Stand"
+    "Island Docks": {
+        "north": "Gambler Stand"
     },
     "Gambler Stand": {
-                "north": "Forest",
-                "west": "Hotel",
-                "east": "The Bar",
-                "south": "Island Docks"
+        "north": "Forest",
+        "west": "Hotel",
+        "east": "The Bar",
+        "south": "Island Docks"
     }
 }
 

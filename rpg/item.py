@@ -1,5 +1,4 @@
-from character import *
-from effect import *
+from rpg.effect import *
 
 
 class Item:
@@ -10,7 +9,8 @@ class Item:
                  ) -> None:
         self.name = name
         self.description = description
-        self.amount  = amount
+        self.amount = amount
+
 
 class ConsumableItem(Item):
     def __init__(self,

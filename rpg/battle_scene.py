@@ -1,9 +1,10 @@
 from typing import Literal
 
-from character import *
-from weapon import *
+from rpg.character import *
+from rpg.weapon import *
 
-def start_battle(hero:Hero, enemy:Enemy) -> Literal["win", "lose"]:
+
+def start_battle(hero: Hero, enemy: Enemy) -> Literal["win", "lose"]:
     hero.equip(iron_sword)
     hero.hp_bar.draw()
     enemy.hp_bar.draw()
@@ -19,7 +20,6 @@ def start_battle(hero:Hero, enemy:Enemy) -> Literal["win", "lose"]:
                     fight(hero, enemy, True)
         except ValueError:
             print(f"Input '{user_input}' not a valid choice!")
-
 
         if hero.is_dead():
             print("You lose! Game Over!")

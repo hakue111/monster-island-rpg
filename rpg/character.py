@@ -1,15 +1,17 @@
-from weapon import *
-from hp_bar import HpBar
 from typing import TYPE_CHECKING
 
+from rpg.hp_bar import HpBar
+from rpg.weapon import fists
+
 if TYPE_CHECKING:
-    from item import ConsumableItem, KeyItem
+    from rpg.item import ConsumableItem, KeyItem
+
 
 class Character:
-    def __init__ (self,
-                  name: str,
-                  hp: int,
-                  ) -> None:
+    def __init__(self,
+                 name: str,
+                 hp: int,
+                 ) -> None:
         # object level variables
         self.name = name
         self.hp = hp
@@ -21,12 +23,11 @@ class Character:
 
         self.weapon = fists
 
-
     def add_consumable(self, item: 'ConsumableItem', amount: int):
         for has_item in self.consumables:
             if has_item.name == item.name:
                 has_item.amount += amount
-                if amount >0:
+                if amount > 0:
                     print(f"Received {item.name} x{amount}!\n{self.name} put {item.name}(s) in the inventory.")
                 else:
                     print(f"Lost {amount}x {item.name}!")
@@ -61,17 +62,14 @@ class Character:
             print("Invalid index. No item found.")
             return False
 
-
     def attack(self, target) -> None:
         target.hp -= self.weapon.dmg
         target.hp = max(target.hp, 0)
         target.hp_bar.update()
         print(f"{self.name} dealt {self.weapon.dmg} damage to {target.name} with {self.weapon.name}")
 
-
     def is_dead(self):
         return self.hp <= 0
-
 
 
 class Hero(Character):
@@ -82,20 +80,18 @@ class Hero(Character):
         super().__init__(name, hp)
 
         self.default_weapon = self.weapon
-        self.hp_bar = HpBar(self, color = "green")
+        self.hp_bar = HpBar(self, color="green")
 
     def equip(self, weapon) -> None:
         self.weapon = weapon
         print(f"{self.name} equipped a(n) {self.weapon.name}!")
 
+    # def drop(self) -> None:
+    # print(f"{self.name} dropped the {self.weapon.name}!")
+    # self.weapon = self.default_weapon
 
-    def drop(self) -> None:
-        print(f"{self.name} dropped the {self.weapon.name}!")
-        self.weapon = self.default_weapon
 
-
-player:Hero
-
+player: Hero
 
 
 class Enemy(Character):
@@ -105,10 +101,7 @@ class Enemy(Character):
                  weapon
                  ) -> None:
         super().__init__(name, hp)
-    # Enemy only has one weapon so it does not need equip method
+        # Enemy only has one weapon so it does not need equip method
         self.weapon = weapon
 
-        self.hp_bar = HpBar(self, color = "red")
-
-
-
+        self.hp_bar = HpBar(self, color="red")

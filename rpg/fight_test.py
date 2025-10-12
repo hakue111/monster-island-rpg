@@ -20,8 +20,6 @@ def win_lose():
         print("Enemy defeated! You win!")
 
 
-
-
 def player_attack():
     global enemy_hp
     choice = input("How do you want to attack? (punch)\n> ")
@@ -41,7 +39,6 @@ def enemy_attack():
     print(f"The enemy punches you!\n You have {player_hp} HP left!")
 
 
-
 def start_fight():
     if player_spd >= enemy_spd:
         player_attack()
@@ -52,67 +49,4 @@ def start_fight():
         player_attack()
 
 
-
-
-
-
 start_fight()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
