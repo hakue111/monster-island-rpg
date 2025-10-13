@@ -2,7 +2,7 @@ from time import sleep
 
 from rpg.cutscene.cutscene import Cutscene
 from rpg.game import Game
-from rpg.item import item_sheet, weapons
+from rpg.item import item_sheet, weapon_sheet
 from rpg.util.clear_screen import clear_screen
 
 
@@ -50,15 +50,15 @@ class BoardingScene(Cutscene):
         user_choice = input("> ")
         if user_choice == "1":
             print("Ferryman: 'An excellent choice!'")
-            game.hero.equip(weapons.iron_sword)
+            game.hero.equip(weapon_sheet.iron_sword)
             return
         if user_choice == "2":
             print("Ferryman: 'A clever choice!'")
-            game.hero.equip(weapons.short_bow)
+            game.hero.equip(weapon_sheet.short_bow)
             return
         if user_choice == "3":
             print("Ferryman: 'A dangerous choice! Oh well, you do you!'")
-            game.hero.equip(weapons.dagger)
+            game.hero.equip(weapon_sheet.dagger)
             return
         print(f"You have to pick one, do you really think you can kill those monster on MONSTER ISLAND with your fists??! DUMBASS")
         self.pick_weapon(game)

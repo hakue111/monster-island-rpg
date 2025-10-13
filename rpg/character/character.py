@@ -1,7 +1,7 @@
 import typing
 
-from rpg.character.hp_bar import HpBar
-from rpg.item import weapons
+from rpg.character.hp_bar import HpMpBar
+from rpg.item import weapon_sheet
 from rpg.item.weapon import Weapon
 from rpg.util.format_color import Color
 
@@ -13,17 +13,20 @@ class Character:
     def __init__(self,
                  name: str,
                  hp: int,
+                 mp: int
                  ) -> None:
         # object level variables
         self.name = name
         self.hp = hp
         self.hp_max = hp
+        self.mp = mp
+        self.mp_max = mp
 
         # give a character an inventory
         self.consumables: list['ConsumableItem'] = []
         self.key_items: list['KeyItem'] = []
 
-        self.weapon = weapons.fists
+        self.weapon = weapon_sheet.fists
 
     def add_consumable(self, item: 'ConsumableItem', amount: int):
         for existing_item in self.consumables:
@@ -79,11 +82,12 @@ class Hero(Character):
     def __init__(self,
                  name: str,
                  hp: int,
+                 mp: int,
                  ) -> None:
-        super().__init__(name, hp)
+        super().__init__(name, hp, mp)
 
         self.default_weapon = self.weapon
-        self.hp_bar = HpBar(self, color=Color.GREEN)
+        self.hp_bar = HpMpBar(self, hp_color=Color.GREEN, mp_color=Color.BLUE)
 
     def equip(self, weapon: Weapon) -> None:
         self.weapon = weapon
@@ -94,10 +98,11 @@ class Enemy(Character):
     def __init__(self,
                  name: str,
                  hp: int,
+                 mp: int,
                  weapon: Weapon,
                  ) -> None:
-        super().__init__(name, hp)
+        super().__init__(name, hp, mp)
         # Enemy only has one weapon so it does not need equip method
         self.weapon = weapon
 
-        self.hp_bar = HpBar(self, color=Color.RED)
+        self.hp_bar = HpMpBar(self, hp_color=Color.RED, mp_color=Color.MAGENTA)

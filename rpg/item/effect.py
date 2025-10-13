@@ -1,7 +1,9 @@
 from typing import TYPE_CHECKING
 
+from rpg import item
+
 if TYPE_CHECKING:
-    from rpg.character.character import Character
+    from rpg.character.character import Character, Hero
 
 
 class Effect:

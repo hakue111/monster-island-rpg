@@ -1,7 +1,7 @@
 import enum
 from typing import Optional
 
-RESET = "\033[0m"
+CODE_REST = "\033[0m"
 
 class Color(enum.Enum):
     BLUE = "\033[94m"
@@ -14,7 +14,22 @@ class Color(enum.Enum):
     WHITE= "\033[97m"
     RED = "\033[91m"
 
-def format_text(color: Optional[Color], text: str) -> str:
-    if color is None:
-        return text
-    return f"{color.value}{text}{RESET}"
+CODE_BOLD = "\033[1m"
+CODE_UNDERLINE = "\033[4m"
+
+def format_text(
+        color: Optional[Color],
+        text: str,
+        bold: bool = False,
+        underline: bool = False,
+) -> str:
+    result = ""
+    if color is not None:
+        result += color.value
+    if bold:
+        result += CODE_BOLD
+    if underline:
+        result += CODE_UNDERLINE
+    result += text
+    result += CODE_REST
+    return result

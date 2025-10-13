@@ -24,3 +24,8 @@ robot_claw = Weapon(name="Robot Claw",
                     weapon_type="mechanical",
                     dmg=10,
                     value=50)
+
+pincers = Weapon(name="Pincers",
+                    weapon_type="sharp",
+                    dmg=8,
+                    value=20)

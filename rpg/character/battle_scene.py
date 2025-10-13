@@ -1,6 +1,6 @@
 from rpg.character.character import Hero, Enemy
 from rpg.character.outcome import Outcome
-from rpg.item import weapons
+from rpg.item import weapon_sheet
 from rpg.util.clear_screen import clear_screen
 
 
