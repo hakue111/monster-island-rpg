@@ -34,6 +34,8 @@ class BoardingScene(Cutscene):
         print(f"Ferryman: And take one of these for your journey:")
         self.pick_weapon(game)
 
+
+
         print(f"{game.hero.name} boards the Ferry.")
         sleep(1)
         print(f"The Ferry horn honks and the ship departs. Soon, the mainland will be out of sight.")

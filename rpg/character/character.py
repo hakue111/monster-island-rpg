@@ -1,6 +1,6 @@
 import typing
 
-from rpg.character.hp_bar import HpMpBar
+from rpg.character.hp_mp_bar import HpMpBar
 from rpg.item import weapon_sheet
 from rpg.item.weapon import Weapon
 from rpg.util.format_color import Color
@@ -13,7 +13,8 @@ class Character:
     def __init__(self,
                  name: str,
                  hp: int,
-                 mp: int
+                 mp: int,
+                 elemental: str
                  ) -> None:
         # object level variables
         self.name = name
@@ -21,6 +22,7 @@ class Character:
         self.hp_max = hp
         self.mp = mp
         self.mp_max = mp
+        self.elemental = elemental
 
         # give a character an inventory
         self.consumables: list['ConsumableItem'] = []
@@ -83,8 +85,9 @@ class Hero(Character):
                  name: str,
                  hp: int,
                  mp: int,
+                 elemental: str
                  ) -> None:
-        super().__init__(name, hp, mp)
+        super().__init__(name, hp, mp, elemental)
 
         self.default_weapon = self.weapon
         self.hp_bar = HpMpBar(self, hp_color=Color.GREEN, mp_color=Color.BLUE)
@@ -99,9 +102,10 @@ class Enemy(Character):
                  name: str,
                  hp: int,
                  mp: int,
+                 elemental: str,
                  weapon: Weapon,
                  ) -> None:
-        super().__init__(name, hp, mp)
+        super().__init__(name, hp, mp, elemental)
         # Enemy only has one weapon so it does not need equip method
         self.weapon = weapon
 

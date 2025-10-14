@@ -29,3 +29,9 @@ pincers = Weapon(name="Pincers",
                     weapon_type="sharp",
                     dmg=8,
                     value=20)
+
+mystery_sword = Weapon(name="Mystery Sword",
+                       weapon_type="sharp",
+                       dmg=20,
+                       value=100
+                       )
