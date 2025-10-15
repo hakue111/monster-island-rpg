@@ -1,35 +1,55 @@
-from rpg.magic.magic import Magic
+from rpg.magic.magic import Magic, BlackMagic, WhiteMagic
 
-ice = Magic(name="Ice",
-            elemental="ice",
-            dmg=5,
-            mp_cost=10)
+ice = BlackMagic(
+    name="Ice",
+    elemental="ice",
+    mp_cost=10,
+    dmg=5
+            )
 
-fire = Magic(name="Fire",
-            elemental="fire",
-            dmg=5,
-            mp_cost=10)
+fire = BlackMagic(
+    name="Fire",
+    elemental="fire",
+    mp_cost=10,
+    dmg=5
+            )
 
-lightning = Magic(name="Lightning",
-            elemental="lightning",
-            dmg=10,
-            mp_cost=20)
+lightning = BlackMagic(
+    name="Lightning",
+    elemental="lightning",
+    mp_cost=20,
+    dmg=10
+            )
 
-wind = Magic(name="Wind",
-            elemental="wind",
-            dmg=10,
-            mp_cost=20)
+wind = BlackMagic(
+    name="Wind",
+    elemental="wind",
+    mp_cost=20,
+    dmg=10
+            )
 
-water = Magic(name="Water",
-              elemental="water",
-              dmg=10,
-              mp_cost=10)
+water = BlackMagic(
+    name="Water",
+    elemental="water",
+    mp_cost=10,
+    dmg=10
+            )
 
 
-flare = Magic(name="Flare",
-              elemental = "neutral",
-              dmg=25,
-              mp_cost=50)
+flare = BlackMagic(
+    name="Flare",
+    elemental = "neutral",
+    mp_cost=50,
+    dmg=25
+            )
+
+
+cure = WhiteMagic(
+    name="Cure",
+    elemental = "neutral",
+    mp_cost=20,
+    heal=30
+            )
 
 
 

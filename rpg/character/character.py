@@ -3,6 +3,7 @@ import typing
 from rpg.character.hp_mp_bar import HpMpBar
 from rpg.item import weapon_sheet
 from rpg.item.weapon import Weapon
+from rpg.magic.magic import Magic
 from rpg.util.format_color import Color
 
 if typing.TYPE_CHECKING:
@@ -23,6 +24,7 @@ class Character:
         self.mp = mp
         self.mp_max = mp
         self.elemental = elemental
+        self.spells: list[Magic] = []
 
         # give a character an inventory
         self.consumables: list['ConsumableItem'] = []
@@ -70,11 +72,39 @@ class Character:
             print("Invalid index. No item found.")
             return False
 
+
+    def print_spells(self, target: 'Character'):
+        print("Magic Spells: ")
+        i: int = 0
+        for spell in self.spells:
+            print(f"{i}: {spell.name}")
+        user_input = input("[index] to cast spell or back.\n> ")
+        if user_input.casefold().strip() == "back":
+            return False
+        try:
+            index = int(user_input)
+            # Return the spell bc it tells us if we could cast it or did not have enough mp
+            return self.cast_magic(target, index)
+        except ValueError:
+            print("Invalid index. No Magic Spell found.")
+            return False
+
+
+
     def attack(self, target) -> None:
         target.hp -= self.weapon.dmg
         target.hp = max(target.hp, 0)
         target.hp_bar.update()
         print(f"{self.name} dealt {self.weapon.dmg} damage to {target.name} with {self.weapon.name}")
+
+
+    def cast_magic(self, target: 'Character', spell_index: int):
+        if spell_index < 0 or spell_index >= len(self.spells):
+            return False
+        else:
+            self.spells[spell_index].cast_magic(self, target)
+            return True
+
 
     def is_dead(self):
         return self.hp <= 0
@@ -95,6 +125,10 @@ class Hero(Character):
     def equip(self, weapon: Weapon) -> None:
         self.weapon = weapon
         print(f"{self.name} equipped a(n) {self.weapon.name}!")
+
+    def learn_spell(self, magic: Magic) -> None:
+        self.spells.append(magic)
+        print(f"{self.name} learned {magic.name}!")
 
 
 class Enemy(Character):

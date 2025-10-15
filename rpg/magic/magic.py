@@ -1,18 +1,53 @@
-from rpg.character.character import Character
+import typing
+
+if typing.TYPE_CHECKING:
+    from rpg.character.character import Character
 
 
 class Magic:
     def __init__(self,
                  name: str,
                  elemental: str,
-                 dmg: int,
-                 mp_cost: int,
+                 mp_cost: int
                  ):
         self.name = name
         self.elemental = elemental
-        self.dmg = dmg
         self.mp_cost = mp_cost
 
+    def cast_magic(self, caster: 'Character', target: 'Character'):
+        raise NotImplementedError()
+
+
+class WhiteMagic(Magic):
+    def __init__(self,
+                 name: str,
+                 elemental: str,
+                 mp_cost: int,
+                 heal: int
+                 ):
+        super().__init__(name, elemental, mp_cost)
+        self.heal = heal
+
+    def cast_magic(self, caster: 'Character', target: 'Character'):
+        if caster.mp < 0:
+            print(f"{caster.name} does not have enough MP to cast {self.name}!")
+        else:
+            caster.mp -= self.mp_cost
+            caster.hp += self.heal
+            if caster.hp > caster.hp_max:
+                caster.hp = caster.hp_max
+            print(f"Restored {self.heal} HP!")
+
+
+class BlackMagic(Magic):
+    def __init__(self,
+                 name: str,
+                 elemental: str,
+                 mp_cost: int,
+                 dmg: int
+                 ):
+        super().__init__(name, elemental, mp_cost)
+        self.dmg = dmg
 
 
     def weakness(self, target):
@@ -42,13 +77,13 @@ class Magic:
             return 1
 
 
-    def cast_magic(self, caster: Character, target: Character):
-        if self.mp < self.mp_cost:
+    def cast_magic(self, caster: 'Character', target: 'Character'):
+        if caster.mp < self.mp_cost:
             print(f"{caster.name} does not have enough MP to cast {self.name}!")
             return False
         else:
             target.hp -= self.dmg * self.weakness(target)
-            self.mp -= self.mp_cost
+            caster.mp -= self.mp_cost
             print(f"{caster.name} casts {self.name} onto {target.name}")
             return True
 

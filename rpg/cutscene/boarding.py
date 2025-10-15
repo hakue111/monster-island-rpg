@@ -3,6 +3,7 @@ from time import sleep
 from rpg.cutscene.cutscene import Cutscene
 from rpg.game import Game
 from rpg.item import item_sheet, weapon_sheet
+from rpg.magic import magic_sheet
 from rpg.util.clear_screen import clear_screen
 
 
@@ -26,15 +27,17 @@ class BoardingScene(Cutscene):
         game.hero.name = name_choice.strip()
 
         print(f"Ferryman: So, you are {game.hero.name}? Please board the ferry. We are departing soon.")
-        sleep(1)
-        print(f"Ferryman: By the way, I have something useful for you.")
+        sleep(2)
+        print("Monster Island is too dangerous without a proper weapon. Choose yours:")
+        self.pick_weapon(game)
+        sleep(2)
+        print("By the way, which of these colors do you like the most?")
+
+        self.fav_color(game)
 
         game.hero.add_consumable(item_sheet.potion, 5)
 
-        print(f"Ferryman: And take one of these for your journey:")
-        self.pick_weapon(game)
-
-
+        sleep(2)
 
         print(f"{game.hero.name} boards the Ferry.")
         sleep(1)
@@ -46,6 +49,32 @@ class BoardingScene(Cutscene):
         print(f"Mystery Man: Welcome to Monster Island, {game.hero.name}. Enjoy your stay...")
         sleep(1)
 
+    def fav_color(self, game: Game):
+        print(f"1: Light Blue\n2: Red \n3: Yellow\n4: Green\n5: Dark Blue")
+        user_choice = input("> ")
+        if user_choice == "1":
+            print("Ferryman: 'You shall now be able to cast ICE MAGIC!'")
+            game.hero.learn_spell(magic_sheet.ice)
+            return
+        if user_choice == "2":
+            print("Ferryman: 'You shall now be able to cast FIRE MAGIC!'")
+            game.hero.learn_spell(magic_sheet.fire)
+            return
+        if user_choice == "3":
+            print("Ferryman: 'You shall now be able to cast LIGHTNING MAGIC!'")
+            game.hero.learn_spell(magic_sheet.lightning)
+            return
+        if user_choice == "4":
+            print("Ferryman: 'You shall now be able to cast WIND MAGIC!")
+            game.hero.learn_spell(magic_sheet.wind)
+            return
+        if user_choice == "5":
+            print("Ferryman: 'You shall now be able to cast WATER MAGIC!")
+            game.hero.learn_spell(magic_sheet.water)
+            return
+        else:
+            print(
+            "Come on now, this ain't hard to answer. Just pick a color you like.")
 
     def pick_weapon(self, game: Game):
         print(f"1: Iron Sword\n2: Short Bow\n3: Dagger")
