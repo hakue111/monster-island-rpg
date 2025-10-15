@@ -1,4 +1,4 @@
-from rpg.character.magic import Magic
+from rpg.magic.magic import Magic
 
 ice = Magic(name="Ice",
             elemental="ice",
@@ -19,6 +19,12 @@ wind = Magic(name="Wind",
             elemental="wind",
             dmg=10,
             mp_cost=20)
+
+water = Magic(name="Water",
+              elemental="water",
+              dmg=10,
+              mp_cost=10)
+
 
 flare = Magic(name="Flare",
               elemental = "neutral",
