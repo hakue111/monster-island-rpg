@@ -3,6 +3,7 @@ from time import sleep
 from rpg.cutscene.cutscene import Cutscene
 from rpg.game import Game
 from rpg.item import item_sheet, weapon_sheet
+from rpg.magic import magic_sheet
 from rpg.util.clear_screen import clear_screen
 
 
@@ -26,15 +27,17 @@ class BoardingScene(Cutscene):
         game.hero.name = name_choice.strip()
 
         print(f"Ferryman: So, you are {game.hero.name}? Please board the ferry. We are departing soon.")
-        sleep(1)
-        print(f"Ferryman: By the way, I have something useful for you.")
+        sleep(2)
+        print("Monster Island is too dangerous without a proper weapon. Choose yours:")
+        self.pick_weapon(game)
+        sleep(2)
+        print("By the way, which of these colors do you like the most?")
+
+        self.fav_color(game)
 
         game.hero.add_consumable(item_sheet.potion, 5)
 
-        print(f"Ferryman: And take one of these for your journey:")
-        self.pick_weapon(game)
-
-
+        sleep(2)
 
         print(f"{game.hero.name} boards the Ferry.")
         sleep(1)

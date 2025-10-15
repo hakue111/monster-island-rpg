@@ -9,12 +9,16 @@ def start_battle(hero: Hero, enemy: Enemy) -> Outcome:
     hero.hp_bar.draw()
     enemy.hp_bar.draw()
     while True:
-        user_input = input("1: Attack | 2: Show Inventory\n> ")
+        user_input = input("1: Attack | 2: Magic | 3: Inventory\n> ")
         try:
             index = int(user_input)
             if index == 1:
                 fight(hero, enemy, False)
             elif index == 2:
+                spell_used = hero.print_spells(enemy)
+                if spell_used:
+                    fight(hero, enemy, True)
+            elif index == 3:
                 item_used = hero.print_consumables()
                 if item_used:
                     fight(hero, enemy, True)
