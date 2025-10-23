@@ -144,3 +144,7 @@ class Enemy(Character):
         self.weapon = weapon
 
         self.hp_bar = HpMpBar(self, hp_color=Color.RED, mp_color=Color.MAGENTA)
+
+    def equip(self, weapon: Weapon) -> None:
+        self.weapon = weapon
+        print(f"{self.name} equipped a(n) {self.weapon.name}!")

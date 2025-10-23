@@ -41,6 +41,7 @@ class HpMpBar:
 
     def draw(self) -> None:
     # draw HP bar
+        self.update()
         remaining_bars_hp = round(self.current_hp_value / self.max_hp_value * self.length)
         lost_bars_hp = self.length - remaining_bars_hp
 
