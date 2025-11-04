@@ -7,7 +7,7 @@ from rpg.room.room import Room
 from rpg.room.roomobject import RoomObject
 
 # first we define the object that is present and interactable in the room:
-class RobotBellboy(RoomObject):
+class HugeCrab(RoomObject):
     LOOK = "Look at the ROBOT BELLBOY"
     TALK = "Talk to the ROBOT BELLBOY"
     FIGHT = "Attack the ROBOT BELLBOY"
@@ -15,9 +15,9 @@ class RobotBellboy(RoomObject):
 # constructor for interactions with said object:
     def __init__(self):
         self.interactions = [
-            RobotBellboy.LOOK,
-            RobotBellboy.TALK,
-            RobotBellboy.FIGHT,
+            HugeCrab.LOOK,
+            HugeCrab.TALK,
+            HugeCrab.FIGHT,
         ]
 # method for interaction with said object:
     def interact(self, game: Game, room: Room, interaction: str):

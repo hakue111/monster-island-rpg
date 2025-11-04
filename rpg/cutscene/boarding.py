@@ -137,6 +137,8 @@ class BoardingScene(Cutscene):
                 print("The Ferryman dies and the ferry sinks.")
                 sleep(1)
                 print("You drown. Well done, dumbass!")
+                sleep(2)
+                print("GAME OVER")
                 exit()
 
 

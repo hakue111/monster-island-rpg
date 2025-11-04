@@ -31,6 +31,10 @@ class Character:
         self.key_items: list['KeyItem'] = []
 
         self.weapon = weapon_sheet.fists
+    # give a character the ability to learn magic spells
+    def learn_spell(self, magic: Magic) -> None:
+        self.spells.append(magic)
+        print(f"{self.name} learned {magic.name}!")
 
     def add_consumable(self, item: 'ConsumableItem', amount: int):
         for existing_item in self.consumables:
@@ -125,10 +129,6 @@ class Hero(Character):
     def equip(self, weapon: Weapon) -> None:
         self.weapon = weapon
         print(f"{self.name} equipped a(n) {self.weapon.name}!")
-
-    def learn_spell(self, magic: Magic) -> None:
-        self.spells.append(magic)
-        print(f"{self.name} learned {magic.name}!")
 
 
 class Enemy(Character):

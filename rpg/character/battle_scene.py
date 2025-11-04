@@ -2,6 +2,7 @@ from rpg.character.character import Hero, Enemy
 from rpg.character.outcome import Outcome
 from rpg.item import weapon_sheet
 from rpg.util.clear_screen import clear_screen
+import random
 
 
 def start_battle(hero: Hero, enemy: Enemy) -> Outcome:
@@ -36,6 +37,10 @@ def start_battle(hero: Hero, enemy: Enemy) -> Outcome:
 def fight(hero: Hero, enemy: Enemy, skip_player: bool):
     if not skip_player:
         hero.attack(enemy)
-    enemy.attack(hero)
+        enemy_randomness = random.randrange(0,100)
+        if enemy_randomness <= 79:
+            enemy.attack(hero)
+        else:
+            enemy.cast_magic(hero, enemy.spells[random.choice(enemy.spells)])
     hero.hp_bar.draw()
     enemy.hp_bar.draw()
