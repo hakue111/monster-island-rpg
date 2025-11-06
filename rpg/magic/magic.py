@@ -36,7 +36,7 @@ class WhiteMagic(Magic):
             caster.hp += self.heal
             if caster.hp > caster.hp_max:
                 caster.hp = caster.hp_max
-            print(f"Restored {self.heal} HP!")
+            print(f"{caster.name} restored {self.heal} HP!")
 
 
 class BlackMagic(Magic):
@@ -77,12 +77,18 @@ class BlackMagic(Magic):
             return 1
 
 
+    def stab(self, caster: 'Character'):
+        if self.elemental == caster.elemental:
+            return 2
+        else:
+            return 1
+
     def cast_magic(self, caster: 'Character', target: 'Character'):
         if caster.mp < self.mp_cost:
             print(f"{caster.name} does not have enough MP to cast {self.name}!")
             return False
         else:
-            target.hp -= self.dmg * self.weakness(target)
+            target.hp -= self.dmg * self.weakness(target) * self.stab(caster)
             caster.mp -= self.mp_cost
             print(f"{caster.name} casts {self.name} onto {target.name}")
             return True

@@ -37,10 +37,10 @@ def start_battle(hero: Hero, enemy: Enemy) -> Outcome:
 def fight(hero: Hero, enemy: Enemy, skip_player: bool):
     if not skip_player:
         hero.attack(enemy)
-        enemy_randomness = random.randrange(0,100)
-        if enemy_randomness <= 79:
-            enemy.attack(hero)
-        else:
-            enemy.cast_magic(hero, enemy.spells[random.choice(enemy.spells)])
+    enemy_randomness = random.randrange(0,100)
+    if enemy_randomness <= 20:
+        enemy.attack(hero)
+    else:
+        enemy.cast_magic(hero, random.choice(range(len(enemy.spells))))
     hero.hp_bar.draw()
     enemy.hp_bar.draw()

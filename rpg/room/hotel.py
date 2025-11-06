@@ -32,6 +32,9 @@ class RobotBellboy(RoomObject):
     def talk(self, game: Game, room: Room):
         print("Robot Bellboy: Welcome to the Monster Island Grand Hotel.")
         print("What can I do for you?")
+        while True:
+            user_choice = input("> ")
+
 
 # method for fighting said object:
     def fight(self, game: Game, room: Room):

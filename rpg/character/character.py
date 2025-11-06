@@ -32,9 +32,10 @@ class Character:
 
         self.weapon = weapon_sheet.fists
     # give a character the ability to learn magic spells
-    def learn_spell(self, magic: Magic) -> None:
+    def learn_spell(self, magic: Magic, print_msg: bool) -> None:
         self.spells.append(magic)
-        print(f"{self.name} learned {magic.name}!")
+        if print_msg:
+            print(f"{self.name} learned {magic.name}!")
 
     def add_consumable(self, item: 'ConsumableItem', amount: int):
         for existing_item in self.consumables:

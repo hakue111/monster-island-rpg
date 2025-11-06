@@ -39,7 +39,7 @@ class BoardingScene(Cutscene):
         sleep(2)
         print("By the way, which of these colors do you like the most?")
 
-        self.fav_color(game)
+        self.choose_elemental(game)
 
         game.hero.add_consumable(item_sheet.potion, 5)
 
@@ -55,28 +55,32 @@ class BoardingScene(Cutscene):
         print(f"Mystery Man: Welcome to Monster Island, {game.hero.name}. Enjoy your stay...")
         sleep(1)
 
-    def fav_color(self, game: Game):
+    def choose_elemental(self, game: Game):
         print(f"1: Light Blue\n2: Red \n3: Yellow\n4: Green\n5: Dark Blue")
         user_choice = input("> ")
         if user_choice == "1":
             print("Ferryman: 'You shall now be able to cast ICE MAGIC!'")
-            game.hero.learn_spell(magic_sheet.ice)
+            game.hero.learn_spell(magic_sheet.ice, True)
+            game.hero.elemental = "ice"
             return
         if user_choice == "2":
             print("Ferryman: 'You shall now be able to cast FIRE MAGIC!'")
-            game.hero.learn_spell(magic_sheet.fire)
+            game.hero.learn_spell(magic_sheet.fire, True)
+            game.hero.elemental = "fire"
             return
         if user_choice == "3":
             print("Ferryman: 'You shall now be able to cast LIGHTNING MAGIC!'")
-            game.hero.learn_spell(magic_sheet.lightning)
+            game.hero.learn_spell(magic_sheet.lightning, True)
             return
         if user_choice == "4":
             print("Ferryman: 'You shall now be able to cast WIND MAGIC!")
-            game.hero.learn_spell(magic_sheet.wind)
+            game.hero.learn_spell(magic_sheet.wind, True)
+            game.hero.elemental = "wind"
             return
         if user_choice == "5":
             print("Ferryman: 'You shall now be able to cast WATER MAGIC!")
-            game.hero.learn_spell(magic_sheet.water)
+            game.hero.learn_spell(magic_sheet.water, True)
+            game.hero.elemental = "water"
             return
         else:
             print(

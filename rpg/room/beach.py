@@ -2,15 +2,15 @@ from rpg.character import enemy_sheet
 from rpg.character.battle_scene import start_battle
 from rpg.character.outcome import Outcome
 from rpg.game import Game
-from rpg.item.item_sheet import robot_chip
+from rpg.item.item_sheet import robot_chip, crab_shell
 from rpg.room.room import Room
 from rpg.room.roomobject import RoomObject
 
 # first we define the object that is present and interactable in the room:
 class HugeCrab(RoomObject):
-    LOOK = "Look at the ROBOT BELLBOY"
-    TALK = "Talk to the ROBOT BELLBOY"
-    FIGHT = "Attack the ROBOT BELLBOY"
+    LOOK = "Look at the HUGE CRAB"
+    TALK = "Talk to the HUGE CRAB"
+    FIGHT = "Attack the HUGE CRAB"
 
 # constructor for interactions with said object:
     def __init__(self):
@@ -21,27 +21,32 @@ class HugeCrab(RoomObject):
         ]
 # method for interaction with said object:
     def interact(self, game: Game, room: Room, interaction: str):
-        if interaction == RobotBellboy.TALK:
+        if interaction == HugeCrab.TALK:
             self.talk(game, room)
-        elif interaction == RobotBellboy.LOOK:
-            print("A robot functioning as the hotel's bellboy.")
-        elif interaction == RobotBellboy.FIGHT:
+        elif interaction == HugeCrab.LOOK:
+            print("A huge crab. It's fucking huge. Jesus fucking Christ.")
+        elif interaction == HugeCrab.FIGHT:
             self.fight(game, room)
 
 # method for talking to said object:
     def talk(self, game: Game, room: Room):
-        print("Robot Bellboy: Welcome to the Monster Island Grand Hotel.")
-        print("What can I do for you?")
+        print("You're talking to the huge crab.")
+        sleep(1)
+        print("...")
+        sleep(1)
+        print("The crab doesn't say anything. It's a crab, dumbass.")
+        return None
 
 # method for fighting said object:
     def fight(self, game: Game, room: Room):
         result = start_battle(game.hero, enemy_sheet.robot_bellboy)
         if result == Outcome.WIN:
-            print("The Robot fell apart...")
+            print("The Crab died and falls apart...")
             room.objects.remove(self)
-            game.hero.key_items.append(robot_chip)
+            game.hero.key_items.append(crab_shell)
+            print(f"{game.hero.name} picked up a mysterious CRAB SHELL.")
         elif result == Outcome.LOSS:
-            print("You died (lol). Game Over!")
+            print("You died. Game Over!")
             exit()
 
 # define a door to return to another room:
@@ -63,10 +68,10 @@ class DoorIslandDocks(RoomObject):
 class Hotel(Room):
     def __init__(self):
         self.objects = [
-            RobotBellboy(),
+            HugeCrab(),
             DoorIslandDocks(),
         ]
 
     def describe(self, game: Game):
-        print("You are at the hotel")
+        print("You are at the beach.")
 
