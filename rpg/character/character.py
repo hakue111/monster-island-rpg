@@ -114,6 +114,12 @@ class Character:
     def is_dead(self):
         return self.hp <= 0
 
+    def key_item_check(self, key_item: 'KeyItem'):
+        for item in self.key_items:
+            if item.name == key_item.name:
+                return True
+        return False
+
 
 class Hero(Character):
     def __init__(self,

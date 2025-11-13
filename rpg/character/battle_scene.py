@@ -38,9 +38,10 @@ def fight(hero: Hero, enemy: Enemy, skip_player: bool):
     if not skip_player:
         hero.attack(enemy)
     enemy_randomness = random.randrange(0,100)
-    if enemy_randomness <= 20:
+    spell_choice_idx: int = random.choice(range(len(enemy.spells)))
+    if enemy_randomness <= 70 and enemy.mp >= enemy.spells[spell_choice_idx].mp_cost:
         enemy.attack(hero)
     else:
-        enemy.cast_magic(hero, random.choice(range(len(enemy.spells))))
+        enemy.cast_magic(hero, spell_choice_idx)
     hero.hp_bar.draw()
     enemy.hp_bar.draw()

@@ -2,6 +2,7 @@ from rpg.character import enemy_sheet
 from rpg.character.battle_scene import start_battle
 from rpg.character.outcome import Outcome
 from rpg.game import Game
+from rpg.item import item_sheet
 from rpg.room.room import Room
 from rpg.room.roomobject import RoomObject
 
@@ -36,11 +37,36 @@ class MysteryMan(RoomObject):
             try:
                 index = int(user_input)
                 if index == 1:
-                    print(f"Mystery Man: 'What do you think MONSTER ISLAND means, dumbass?")
+                    print(f"Mystery Man: 'Who knows?")
                 elif index == 2:
-                    print(f"You can try to leave if you want...")
+                    having = []
+                    missing = []
+                    if game.hero.key_item_check(item_sheet.robot_chip):
+                        having.append("ROBOT CHIP")
+                    else:
+                        missing.append("ROBOT CHIP")
+                    if game.hero.key_item_check(item_sheet.crab_shell):
+                        having.append("CRAB SHELL")
+                    else:
+                        missing.append("CRAB SHELL")
+                    if game.hero.key_item_check(item_sheet.gorilla_paw):
+                        having.append("GORILLA PAW")
+                    else:
+                        missing.append("GORILLA PAW")
+                    if not missing:
+                        print(f"Very good, {game.hero.name}! You brought me the items I desired!")
+                        print("I shall now show you the secret passageway!")
+                    elif having:
+                        print(f"You still need to bring me {', '.join(missing)}.")
+                        print(f"Remember, you already have {', '.join(having)}.")
+                    else:
+                      print(f"You can try to leave. Bring me a ROBOT CHIP, a CRAB SHELL, and a GORILLA PAW\n")
+
+
+
+
                 elif index == 3:
-                    print(f"I'm going to teach you some manners, you little bastard!")
+                    print(f"Big mistake.")
                     self.fight(game, room)
                     return
                 elif index == 4:
@@ -48,13 +74,17 @@ class MysteryMan(RoomObject):
             except ValueError:
                 print(f"Input '{user_input}' not a valid choice!")
 
+
+
+
+
     def fight(self, game: Game, room: Room):
         result = start_battle(game.hero, enemy_sheet.mystery_man)
         if result == Outcome.WIN:
             print("The Mystery Man died...or did he?")
             room.objects.remove(self)
         elif result == Outcome.LOSS:
-            print("You died (lol). Game Over!")
+            print("You died. Game Over!")
             exit()
 
 class DoorGamblerStand(RoomObject):
