@@ -33,17 +33,17 @@ class BoardingScene(Cutscene):
         game.hero.name = name_choice.strip()
 
         print(f"Ferryman: So, you are {game.hero.name}? Please board the ferry. We are departing soon.")
-        sleep(2)
+        sleep(1)
         print("Monster Island is too dangerous without a proper weapon. Choose yours:")
         self.pick_weapon(game)
-        sleep(2)
+        sleep(1)
         print("By the way, which of these colors do you like the most?")
-
         self.choose_elemental(game)
 
+        print("By the way, you will need a few Potions!")
         game.hero.add_consumable(item_sheet.potion, 5)
 
-        sleep(2)
+        sleep(1)
 
         print(f"{game.hero.name} boards the Ferry.")
         sleep(1)
@@ -84,7 +84,7 @@ class BoardingScene(Cutscene):
             return
         else:
             print(
-            "Come on now, this ain't hard to answer. Just pick a color you like.")
+            "Alright, if you don't want to answer, you won't learn any spells. Tough luck.")
 
     def pick_weapon(self, game: Game):
         print(f"1: Iron Sword\n2: Short Bow\n3: Dagger")
@@ -104,8 +104,7 @@ class BoardingScene(Cutscene):
             game.hero.equip(weapon_sheet.dagger)
             self.starter_weapons.remove(dagger)
             return
-        print(f"You have to pick one, do you really think you can kill those monster on MONSTER ISLAND with your fists??! DUMBASS")
-        self.pick_weapon(game)
+        print(f"If you don't want to choose a weapon, you won't get any. Tough luck trying to survive the island with your bare fists.")
 
 
     def boredom(self, game: Game):
