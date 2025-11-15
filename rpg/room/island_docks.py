@@ -3,7 +3,6 @@ from rpg.character.battle_scene import start_battle
 from rpg.character.outcome import Outcome
 from rpg.game import Game
 from rpg.item import item_sheet
-from rpg.room import rooms
 from rpg.room.room import Room
 from rpg.room.roomobject import RoomObject
 
@@ -63,9 +62,8 @@ class MysteryMan(RoomObject):
                             print("If you want to leave bring me a ROBOT CHIP, a CRAB SHELL and a GORILLA PAW.")
                             print("What? You already have those? How did you...whatever. Just give them to me.")
                             print(f"Very well, {game.hero.name}! I shall now show you the secret passageway!")
-                            if rooms["gambler_stand"].objects[0].gambler_dead:
+                            if game.choices["gambler_dead"]:
                                 print("By the way, I heard you killed the gambler. Never liked the dude, to be honest.")
-
                     elif having:
                         print(f"You still need to bring me {', '.join(missing)}.")
                         print(f"Remember, you already have {', '.join(having)}.")

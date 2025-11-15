@@ -3,11 +3,13 @@ from rpg.cutscene.boarding import BoardingScene
 from rpg.game import Game
 from rpg.room import rooms
 
-
 class Rpg(Game):
     def __init__(self, initial_room: str):
         self.current_room = initial_room
         self.hero = Hero(name="Jane Doe", hp=100, mp=50, elemental="neutral")
+        self.choices = {
+            "gambler_dead": False
+        }
 
     def loop(self):
         BoardingScene().run(self)

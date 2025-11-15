@@ -14,7 +14,6 @@ class Gambler(RoomObject):
     LOOK = "Look at the GAMBLER"
     TALK = "Play the GAMBLER's game of chance"
     FIGHT = "Attack the shady GAMBLER"
-    gambler_dead: bool = False
     annoyance: int
 
     def __init__(self):
@@ -93,7 +92,7 @@ class Gambler(RoomObject):
         result = start_battle(game.hero, enemy_sheet.gambler)
         if result == Outcome.WIN:
             print("The gambler dies.")
-            self.gambler_dead = True
+            game.choices["gambler_dead"] = True
             room.objects.remove(self)
             room.objects.append(GamblingStandCounter())
         elif result == Outcome.LOSS:
