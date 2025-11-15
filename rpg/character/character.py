@@ -114,6 +114,22 @@ class Character:
     def is_dead(self):
         return self.hp <= 0
 
+    def add_key_item(self, item: 'KeyItem', amount: int):
+        for existing_item in self.key_items:
+            if existing_item.name == item.name:
+                existing_item.amount += amount
+                if amount > 0:
+                    print(f"Received {item.name} x{amount}!")
+                else:
+                    print(f"Lost {amount}x {item.name}!")
+                return
+        if amount > 0:
+            item.amount = amount
+            self.key_items.append(item)
+            print(f"Received {item.name} x{amount}!")
+
+
+
     def key_item_check(self, key_item: 'KeyItem'):
         for item in self.key_items:
             if item.name == key_item.name:

@@ -97,7 +97,7 @@ class Gambler(RoomObject):
             room.objects.remove(self)
             room.objects.append(GamblingStandCounter())
         elif result == Outcome.LOSS:
-            print("You died (lol). Game Over!")
+            print("You died. Game Over!")
             exit()
 
 class GamblingStandCounter(RoomObject):

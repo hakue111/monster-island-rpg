@@ -7,6 +7,9 @@ from rpg.room import rooms
 from rpg.room.room import Room
 from rpg.room.roomobject import RoomObject
 
+if typing.TYPE_CHECKING:
+    from rpg.room.............!!!!!!
+
 class MysteryMan(RoomObject):
     TALK = "Talk to the MYSTERY MAN"
     LOOK = "Look at the MYSTERY MAN"
@@ -39,7 +42,7 @@ class MysteryMan(RoomObject):
             try:
                 index = int(user_input)
                 if index == 1:
-                    print(f"Mystery Man: 'Who knows?")
+                    print("Mystery Man: 'Who knows?")
                 elif index == 2:
                     having = []
                     missing = []
@@ -64,7 +67,7 @@ class MysteryMan(RoomObject):
                             print("What? You already have those? How did you...whatever. Just give them to me.")
                             print(f"Very well, {game.hero.name}! I shall now show you the secret passageway!")
                             if rooms["gambler_stand"].objects[0].gambler_dead:
-                                print("By the way, I heard you killed the gambler. Never liked the dude. Well done.")
+                                print("By the way, I heard you killed the gambler. Never liked the dude, to be honest.")
 
                     elif having:
                         print(f"You still need to bring me {', '.join(missing)}.")
