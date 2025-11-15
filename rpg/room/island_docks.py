@@ -7,9 +7,6 @@ from rpg.room import rooms
 from rpg.room.room import Room
 from rpg.room.roomobject import RoomObject
 
-if typing.TYPE_CHECKING:
-    from rpg.room.............!!!!!!
-
 class MysteryMan(RoomObject):
     TALK = "Talk to the MYSTERY MAN"
     LOOK = "Look at the MYSTERY MAN"
