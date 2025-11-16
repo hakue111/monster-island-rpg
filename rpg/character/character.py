@@ -110,12 +110,11 @@ class Character:
         print(f"{self.name} dealt {self.weapon.dmg} damage to {target.name} with {self.weapon.name}")
 
 
-    def cast_magic(self, target: 'Character', spell_index: int):
-        if spell_index < 0 or spell_index >= len(self.spells):
+    def cast_magic(self, target: 'Character', spell: 'Magic'):
+        if spell not in self.spells:
             return False
-        else:
-            self.spells[spell_index].cast_magic(self, target)
-            return True
+        spell.cast_magic(self, target)
+        return True
 
 
     def is_dead(self):
