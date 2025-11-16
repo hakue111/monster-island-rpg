@@ -8,7 +8,7 @@ potion.add_effect(RestoreHPEffect(40))
 hi_potion: ConsumableItem = ConsumableItem("Hi-Potion", "Restores 60 HP.", 1)
 hi_potion.add_effect(RestoreHPEffect(60))
 
-mega_potion: ConsumableItem = ConsumableItem("Mega Potion", "Restores 100 HP.", 1)
+mega_potion: ConsumableItem = ConsumableItem("Mega-Potion", "Restores 100 HP.", 1)
 mega_potion.add_effect(RestoreHPEffect(100))
 
 ether: ConsumableItem = ConsumableItem("Ether", "Restores 40 MP.", 1)

@@ -2,6 +2,7 @@ import random
 
 from rpg.character.character import Hero, Enemy
 from rpg.character.outcome import Outcome
+from rpg.item import item
 from rpg.util.clear_screen import clear_screen
 
 
@@ -20,7 +21,7 @@ def start_battle(hero: Hero, enemy: Enemy) -> Outcome:
                 if spell_used:
                     fight(hero, enemy, True)
             elif index == 3:
-                item_used = hero.print_consumables()
+                item_used = hero.print_consumables(True)
                 if item_used:
                     fight(hero, enemy, True)
         except ValueError:
@@ -37,11 +38,25 @@ def start_battle(hero: Hero, enemy: Enemy) -> Outcome:
 def fight(hero: Hero, enemy: Enemy, skip_player: bool):
     if not skip_player:
         hero.attack(enemy)
-    enemy_randomness = random.randrange(0,100)
-    spell = random.choice(enemy.spells) if enemy.spells else None
-    if enemy_randomness >= 70 and spell is not None and enemy.mp >= spell.mp_cost:
-        enemy.cast_magic(hero, spell)
-    else:
-        enemy.attack(hero)
+    enemy_skip = False
+    if enemy.hp / enemy.hp_max <= 0.5:
+        for index in range(len(enemy.consumables)):
+            if "Potion" in enemy.consumables[index].name:
+                enemy.use_consumable(index)
+                enemy_skip = True
+                break
+    if enemy.mp / enemy.mp_max <= 0.5:
+        for index in range(len(enemy.consumables)):
+            if "Ether" in enemy.consumables[index].name:
+                enemy.use_consumable(index)
+                enemy_skip = True
+                break
+    if not enemy_skip:
+        enemy_randomness = random.randrange(0,100)
+        spell = random.choice(enemy.spells) if enemy.spells else None
+        if enemy_randomness >= 70 and spell is not None and enemy.mp >= spell.mp_cost:
+            enemy.cast_magic(hero, spell)
+        else:
+            enemy.attack(hero)
     hero.hp_bar.draw()
     enemy.hp_bar.draw()

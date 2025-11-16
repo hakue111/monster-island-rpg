@@ -16,21 +16,43 @@ class BoardingScene(Cutscene):
     starter_weapons: list[Weapon] = [iron_sword, short_bow, dagger]
     def run(self, game: Game):
         clear_screen()
-        print("One day, as you open your mail, you find a MYSTERIOUS ENVELOPE")
-        print("The letter inside proudly proclaims that you've won a free vacation on MONSTER ISLAND")
-        print()
-        sleep(1)
-        print("That's curious, you think to yourself, you don't remember playing the lottery...")
-        print()
-        sleep(1)
-        print("The next morning.")
-        print("You are standing on the docks.")
-        print("With your baggage and your ticket in your hands, you are about to board the ferry.")
-        sleep(1)
+        print("You are about to take the ferry to MONSTER ISLAND.")
         print("Ferryman: What is your name?")
 
         name_choice = input("> ")
         game.hero.name = name_choice.strip()
+
+        # TEST/CHEAT MODE "CHUCK"
+        if game.hero.name.casefold().strip() == "chuck":
+            print("+++INITIATING TEST MODE+++")
+            game.hero.learn_spell(magic_sheet.ice, False)
+            game.hero.learn_spell(magic_sheet.fire, False)
+            game.hero.learn_spell(magic_sheet.lightning, False)
+            game.hero.learn_spell(magic_sheet.wind, False)
+            game.hero.learn_spell(magic_sheet.water, False)
+            game.hero.learn_spell(magic_sheet.flare, False)
+            game.hero.learn_spell(magic_sheet.cure, False)
+            game.hero.elemental = "neutral"
+
+            game.hero.equip(weapon_sheet.chuck_sword, False)
+            game.hero.hp_max = 500
+            game.hero.hp = 500
+            game.hero.mp_max = 500
+            game.hero.mp = 500
+
+            game.hero.add_consumable(item_sheet.potion, 5, False)
+            game.hero.add_consumable(item_sheet.hi_potion, 5, False)
+            game.hero.add_consumable(item_sheet.mega_potion, 5, False)
+            game.hero.add_consumable(item_sheet.ether, 5, False)
+            game.hero.add_consumable(item_sheet.hi_ether, 5, False)
+            game.hero.add_consumable(item_sheet.mega_ether, 5, False)
+            game.hero.add_consumable(item_sheet.elixir, 5, False)
+            return
+
+
+
+
+
 
         print(f"Ferryman: So, you are {game.hero.name}? Please board the ferry. We are departing soon.")
         sleep(1)
@@ -104,7 +126,7 @@ class BoardingScene(Cutscene):
             game.hero.equip(weapon_sheet.dagger)
             self.starter_weapons.remove(dagger)
             return
-        print(f"If you don't want to choose a weapon, you won't get any. Tough luck trying to survive the island with your bare fists.")
+        print(f"If you don't want to choose a weapon, you won't get any. Tough luck.")
 
 
     def boredom(self, game: Game):
@@ -120,13 +142,13 @@ class BoardingScene(Cutscene):
             print("You better get some rest.")
         if user_choice == "2":
             print(f"{game.hero.name} takes a nap...")
-            sleep(3)
-            print("Zzzz....")
-            sleep(2)
+            sleep(1)
             print("Zzzz....")
             sleep(1)
             print("Zzzz....")
-            sleep(3)
+            sleep(1)
+            print("Zzzz....")
+            sleep(1)
             print("The ferry has arrived on the island!")
         if user_choice == "3":
             print(f"What the fuck are you doing, {game.hero.name}?!")

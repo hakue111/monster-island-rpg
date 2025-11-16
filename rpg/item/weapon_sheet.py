@@ -35,3 +35,9 @@ mystery_sword = Weapon(name="Mystery Sword",
                        dmg=20,
                        value=100
                        )
+
+chuck_sword = Weapon(name = "Chuck Sword",
+                     weapon_type= "test/cheat weapon",
+                     dmg = 100,
+                     value = 10000
+                     )
