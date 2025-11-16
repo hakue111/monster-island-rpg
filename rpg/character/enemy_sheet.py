@@ -17,7 +17,7 @@ mystery_man.learn_spell(magic_sheet.cure, False)
 gambler: Enemy = Enemy("Gambler", 30, 20, "wind", dagger)
 gambler.learn_spell(magic_sheet.wind, False)
 
-robot_bellboy: Enemy = Enemy("Robot Bellboy", 200,0,"lightning", robot_claw)
+robot_bellboy: Enemy = Enemy("Robot Bellboy", 100,0,"lightning", robot_claw)
 #drops robot chip
 
 huge_crab: Enemy = Enemy("Huge Crab", 50, 25, "ice", pincers)

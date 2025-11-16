@@ -93,7 +93,7 @@ class MysteryMan(RoomObject):
             print("The Mystery Man died...or did he?")
             room.objects.remove(self)
         elif result == Outcome.LOSS:
-            print("You died. Game Over!")
+            print("You died.")
             exit()
 
 class DoorGamblerStand(RoomObject):

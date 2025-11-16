@@ -115,8 +115,17 @@ class GamblingStandCounter(RoomObject):
             if self.used:
                 print("There's nothing here")
             else:
-                game.hero.add_consumable(item_sheet.potion, 1)
-                self.used = True
+                print("Behind the counter, you find a large chest.")
+                user_input = input("Open it? (yes/no)\n> ")
+                if user_input.casefold().strip() == "yes":
+                    print("You open the chest and find an Elixir and a Hi-Ether!")
+                    game.hero.add_consumable(item_sheet.elixir, 1)
+                    game.hero.add_consumable(item_sheet.hi_ether, 1)
+                    self.used = True
+                else:
+                    print("You decide to not open the chest.")
+
+
 
 class DoorIslandDocks(RoomObject):
     GOTO = "Return to the ISLAND DOCKS"

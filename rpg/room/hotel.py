@@ -65,7 +65,7 @@ class RobotBellboy(RoomObject):
             print("The Robot Bellboy fell apart.")
             sleep(1)
             print("You pick up the ROBOT CHIP that the Robot Bellboy dropped.")
-            game.hero.add_key_item(item_sheet.robot_chip)
+            game.hero.add_key_item(item_sheet.robot_chip, 1)
             sleep(1)
             print("You also pick up a Mega Ether the Robot Bellboy dropped.")
             game.hero.add_consumable(item_sheet.mega_ether, 1)
