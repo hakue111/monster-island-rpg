@@ -40,26 +40,30 @@ class HpMpBar:
         self.current_mp_value = self.entity.mp
 
     def draw(self) -> None:
-    # draw HP bar
+        # draw HP bar
         self.update()
+
+        print(format_text(color=None, bold=True, text=self.entity.name))
+
         remaining_bars_hp = round(self.current_hp_value / self.max_hp_value * self.length)
         lost_bars_hp = self.length - remaining_bars_hp
-
-        remaining_bars_mp = round(self.current_mp_value / self.max_mp_value * self.length)
-        lost_bars_mp = self.length - remaining_bars_mp
-    # f string for HP and MP gauges
-        print(format_text(color=None, bold=True, text=self.entity.name))
         hp_text = f"HP: {self.entity.hp}/{self.entity.hp_max}".ljust(self.length)
-        mp_text= f"MP: {self.entity.mp}/{self.entity.mp_max}".ljust(self.length)
-        print(hp_text, mp_text)
-        print(
-            format_text(
-                self.hp_color,
-                f"{remaining_bars_hp * self.symbol_remaining}{lost_bars_hp * self.symbol_lost}"
-            ),
-    # draw MP bar
-            format_text(
+        hp_bar = format_text(
+            self.hp_color,
+            f"{remaining_bars_hp * self.symbol_remaining}{lost_bars_hp * self.symbol_lost}"
+        )
+
+        if self.max_mp_value > 0:
+            remaining_bars_mp = round(self.current_mp_value / self.max_mp_value * self.length)
+            lost_bars_mp = self.length - remaining_bars_mp
+            mp_text= f"MP: {self.entity.mp}/{self.entity.mp_max}".ljust(self.length)
+            mp_bar = format_text(
                 self.mp_color,
                 f"{remaining_bars_mp * self.symbol_remaining}{lost_bars_mp * self.symbol_lost}"
-            ),
-        )
+            )
+
+            print(f"{hp_text} {mp_text}")
+            print(f"{hp_bar} {mp_bar}")
+        else:
+            print(f"{hp_text}")
+            print(f"{hp_bar}")
