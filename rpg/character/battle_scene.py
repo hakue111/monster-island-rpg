@@ -20,7 +20,7 @@ def start_battle(hero: Hero, enemy: Enemy) -> Outcome:
                 if spell_used:
                     fight(hero, enemy, True)
             elif index == 3:
-                item_used = hero.print_consumables()
+                item_used = hero.print_consumables(True)
                 if item_used:
                     fight(hero, enemy, True)
         except ValueError:

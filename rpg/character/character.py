@@ -38,19 +38,20 @@ class Character:
         if print_msg:
             print(f"{self.name} learned {magic.name}!")
 
-    def add_consumable(self, item: 'ConsumableItem', amount: int):
+    def add_consumable(self, item: 'ConsumableItem', amount: int, print_msg: bool):
         for existing_item in self.consumables:
             if existing_item.name == item.name:
                 existing_item.amount += amount
-                if amount > 0:
+                if amount > 0 and print_msg:
                     print(f"Received {item.name} x{amount}!")
-                else:
+                elif print_msg:
                     print(f"Lost {amount}x {item.name}!")
                 return
         if amount > 0:
             item.amount = amount
             self.consumables.append(item)
-            print(f"Received {item.name} x{amount}!")
+            if print_msg:
+                print(f"Received {item.name} x{amount}!")
 
     def use_consumable(self, index: int):
         if index < 0 or index >= len(self.consumables):
@@ -63,17 +64,17 @@ class Character:
 
     # basically INVENTORY
     # bc we want to print consumable items in fights, not key items
-    def print_consumables(self):
+    def print_consumables(self, print_msg: bool):
         print("Inventory: ")
-        i: int = 0
-        for item in self.consumables:
-            print(f"{i}: {item.name} x{item.amount} - {item.description}")
+        for index in range(len(self.consumables)):
+            item = self.consumables[index]
+            print(f"{index + 1}: {item.name} x{item.amount} - {item.description}.")
         user_input = input("[index] to use item or back.\n> ")
         if user_input.casefold().strip() == "back":
             return False
         try:
             index = int(user_input)
-            return self.use_consumable(index)
+            return self.use_consumable(index - 1)
         except ValueError:
             print("Invalid index. No item found.")
             return False
@@ -93,9 +94,9 @@ class Character:
 
     def print_spells(self, target: 'Character'):
         print("Magic Spells: ")
-        i: int = 0
-        for spell in self.spells:
-            print(f"{i}: {spell.name}")
+        for index in range(len(self.spells)):
+            spell = self.spells[index]
+            print(f"{index + 1}: {spell.name}")
         print("[index] to cast spell or back.")
         spell = self._choose_spell(self.spells)
         if spell is None:
@@ -155,9 +156,10 @@ class Hero(Character):
         self.default_weapon = self.weapon
         self.hp_bar = HpMpBar(self, hp_color=Color.GREEN, mp_color=Color.BLUE)
 
-    def equip(self, weapon: Weapon) -> None:
+    def equip(self, weapon: Weapon, print_msg: bool) -> None:
         self.weapon = weapon
-        print(f"{self.name} equipped a(n) {self.weapon.name}!")
+        if print_msg:
+            print(f"{self.name} equipped a(n) {self.weapon.name}!")
 
 
 class Enemy(Character):

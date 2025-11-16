@@ -1,16 +1,20 @@
+from rpg.item import item_sheet
 from rpg.item.weapon_sheet import iron_sword, fists, robot_claw, dagger, pincers, mystery_sword
 
 from rpg.character.character import Enemy
 from rpg.magic import magic_sheet
 
 ferry_man: Enemy = Enemy("Ferryman", 50, 50, "neutral", fists)
-ferry_man.learn_spell(magic_sheet.ice, False)
-ferry_man.learn_spell(magic_sheet.fire, False)
-ferry_man.learn_spell(magic_sheet.lightning, False)
-ferry_man.learn_spell(magic_sheet.wind, False)
-ferry_man.learn_spell(magic_sheet.water, False)
 
-mystery_man: Enemy = Enemy("Mystery Man", 100, 100, "neutral", mystery_sword)
+mystery_man: Enemy = Enemy("Mystery Man", 200, 200, "neutral", mystery_sword)
+mystery_man.add_consumable(item_sheet.mega_potion, 1, False)
+mystery_man.add_consumable(item_sheet.mega_ether, 1, False)
+mystery_man.add_consumable(item_sheet.elixir, 1, False)
+mystery_man.learn_spell(magic_sheet.ice, False)
+mystery_man.learn_spell(magic_sheet.fire, False)
+mystery_man.learn_spell(magic_sheet.lightning, False)
+mystery_man.learn_spell(magic_sheet.wind, False)
+mystery_man.learn_spell(magic_sheet.water, False)
 mystery_man.learn_spell(magic_sheet.flare, False)
 mystery_man.learn_spell(magic_sheet.cure, False)
 
