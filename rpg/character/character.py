@@ -1,4 +1,5 @@
 import typing
+from typing import Optional
 
 from rpg.character.hp_mp_bar import HpMpBar
 from rpg.item import weapon_sheet
@@ -77,23 +78,29 @@ class Character:
             print("Invalid index. No item found.")
             return False
 
+    def _choose_spell(self, options: list[Magic]) -> Optional[Magic]:
+        while True:
+            try:
+                text = input("> ")
+                if text.casefold().strip() == "back":
+                    return None
+                choice = int(text)
+                return options[choice - 1]
+            except Exception:
+                print("Invalid choice.")
+                return None
+
 
     def print_spells(self, target: 'Character'):
         print("Magic Spells: ")
         i: int = 0
         for spell in self.spells:
             print(f"{i}: {spell.name}")
-        user_input = input("[index] to cast spell or back.\n> ")
-        if user_input.casefold().strip() == "back":
+        print("[index] to cast spell or back.")
+        spell = self._choose_spell(self.spells)
+        if spell is None:
             return False
-        try:
-            index = int(user_input)
-            # Return the spell bc it tells us if we could cast it or did not have enough mp
-            return self.cast_magic(target, index)
-        except ValueError:
-            print("Invalid index. No Magic Spell found.")
-            return False
-
+        return self.cast_magic(target, spell)
 
 
     def attack(self, target) -> None:

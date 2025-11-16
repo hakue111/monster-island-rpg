@@ -2,6 +2,8 @@ from rpg.character.character import Hero
 from rpg.cutscene.boarding import BoardingScene
 from rpg.game import Game
 from rpg.room import rooms
+from rpg.util.choose import choose
+
 
 class Rpg(Game):
     def __init__(self, initial_room: str):
@@ -30,11 +32,5 @@ class Rpg(Game):
         for index in range(len(interactions)):
             obj, interaction = interactions[index]
             print(f"{index + 1}. {interaction}")
-        while True:
-            try:
-                choice = int(input("> "))
-                obj, interaction = interactions[choice - 1]
-                obj.interact(self, room, interaction)
-                break
-            except Exception:
-                print("Invalid choice.")
+        obj, interaction = choose(interactions)
+        obj.interact(self, room, interaction)
