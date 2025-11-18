@@ -1,4 +1,5 @@
 import random
+from time import sleep
 from typing import Optional
 
 from rpg.character import enemy_sheet
@@ -6,6 +7,7 @@ from rpg.character.battle_scene import start_battle
 from rpg.character.outcome import Outcome
 from rpg.game import Game
 from rpg.item import item_sheet
+from rpg.item.item import Item, KeyItem, ConsumableItem
 from rpg.room.room import Room
 from rpg.room.roomobject import RoomObject
 
@@ -15,6 +17,18 @@ class Gambler(RoomObject):
     TALK = "Play the GAMBLER's game of chance"
     FIGHT = "Attack the shady GAMBLER"
     annoyance: int
+    jackpot: list[ConsumableItem | KeyItem] = [
+        item_sheet.potion,
+        item_sheet.hi_potion,
+        item_sheet.mega_potion,
+        item_sheet.ether,
+        item_sheet.hi_ether,
+        item_sheet.mega_ether,
+        item_sheet.elixir,
+        item_sheet.robot_chip,
+        item_sheet.crab_shell,
+        item_sheet.gorilla_paw
+        ]
 
     def __init__(self):
         self.interactions = [
@@ -36,10 +50,9 @@ class Gambler(RoomObject):
         print("Gambler: Hello, would you like to play a game?")
         print("It's simple: I will hide this little ball under one of three shells.")
         print("I will then shuffle the shells. You have one guess.")
-        print(f"But don't try to piss me off!")
+        print("Do you accept the challenge?(yes/no)")
         accepted = False
         while not accepted:
-            print("Do you accept the challenge?(yes/no)")
             choice = input("> ")
             if choice.casefold().strip() == "yes".casefold():
                 accepted = True
@@ -61,11 +74,20 @@ class Gambler(RoomObject):
                 print("Shut the fuck up and let's fight instead!")
                 self.fight(game, room)
             elif outcome == Outcome.WIN:
-                print("Lucky shot...")
-                game.hero.add_consumable(item_sheet.potion, 1)
+                sleep(1)
+                print("It's your lucky day!")
+                random_item = random.choice(self.jackpot)
+                if isinstance(random_item, ConsumableItem):
+                    print("You win a consumable item.")
+                    game.hero.add_consumable(random_item, 1, True)
+                else:
+                    print("You win a very special item!")
+                    game.hero.add_key_item(random_item, 1, True)
             elif outcome == Outcome.LOSS:
                 print("You lost, which means I'm going to take one of YOUR items!")
-                game.hero.add_consumable(item_sheet.potion, -1)
+                random_item = random.randrange(0,len(game.hero.consumables) - 1)
+                game.hero.add_consumable(game.hero.consumables[random_item], -1, True)
+
 
     def shell_game(self) -> Optional[Outcome]:
         print("The Gambler shuffles the shells.")
@@ -89,7 +111,7 @@ class Gambler(RoomObject):
                 return Outcome.LOSS
 
     def fight(self, game: Game, room: Room):
-        result = start_battle(game.hero, enemy_sheet.gambler)
+        result = start_battle(game.hero, enemy_sheet.gambler, True)
         if result == Outcome.WIN:
             print("The gambler dies.")
             game.choices["gambler_dead"] = True
@@ -119,8 +141,8 @@ class GamblingStandCounter(RoomObject):
                 user_input = input("Open it? (yes/no)\n> ")
                 if user_input.casefold().strip() == "yes":
                     print("You open the chest and find an Elixir and a Hi-Ether!")
-                    game.hero.add_consumable(item_sheet.elixir, 1)
-                    game.hero.add_consumable(item_sheet.hi_ether, 1)
+                    game.hero.add_consumable(item_sheet.elixir, 1, True)
+                    game.hero.add_consumable(item_sheet.hi_ether, 1, True)
                     self.used = True
                 else:
                     print("You decide to not open the chest.")

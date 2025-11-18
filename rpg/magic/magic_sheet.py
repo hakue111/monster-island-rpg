@@ -21,6 +21,20 @@ lightning = BlackMagic(
     dmg=10
             )
 
+lightning_2 = BlackMagic(
+    name="Lightning2",
+    elemental="lightning",
+    mp_cost=20,
+    dmg=30
+            )
+
+lightning_3 = BlackMagic(
+    name="Lightning3",
+    elemental="lightning",
+    mp_cost=20,
+    dmg=90
+            )
+
 wind = BlackMagic(
     name="Wind",
     elemental="wind",

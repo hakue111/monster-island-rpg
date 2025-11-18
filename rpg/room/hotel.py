@@ -53,6 +53,13 @@ class RobotBellboy(RoomObject):
                     print("Robot Bellboy: 'SELF-DEFENSE MECHANISM ACTIVATED.")
                     self.fight(game, room)
                     return
+                elif index == 4:
+                    print("Robot Bellboy: 'Understood. Here is the ROBOT CHIP.'")
+                    print("As the Robot Bellboy gives you his CHIP, he stops functioning.\nAI truly makes everything easier.")
+                    game.hero.add_key_item(item_sheet.robot_chip, 1, True)
+                    room.objects.remove(self)
+                    room.objects.append(HotelCounter())
+                    return
                 elif index == 5:
                     return
             except ValueError:
@@ -60,24 +67,17 @@ class RobotBellboy(RoomObject):
 
 
     def fight(self, game: Game, room: Room):
-        result = start_battle(game.hero, enemy_sheet.robot_bellboy)
+        result = start_battle(game.hero, enemy_sheet.robot_bellboy, True)
         if result == Outcome.WIN:
             print("The Robot Bellboy fell apart.")
             sleep(1)
             print("You pick up the ROBOT CHIP that the Robot Bellboy dropped.")
-            game.hero.add_key_item(item_sheet.robot_chip, 1)
+            game.hero.add_key_item(item_sheet.robot_chip, 1, True)
             sleep(1)
             print("You also pick up a Mega Ether the Robot Bellboy dropped.")
-            game.hero.add_consumable(item_sheet.mega_ether, 1)
-
-            if game.hero.elemental != "lightning":
-                print("You notice a yellow book on the counter.")
-                user_input = input("Pick up the book?(yes/no)")
-                if user_input.casefold().strip() == "yes":
-                    game.hero.learn_spell(magic_sheet.lightning, True)
-                else:
-                    print("You decide not to pick up the yellow book.")
+            game.hero.add_consumable(item_sheet.mega_ether, 1, True)
             room.objects.remove(self)
+            room.objects.append(HotelCounter())
         elif result == Outcome.LOSS:
             print("You died. Game Over!")
             exit()
@@ -85,20 +85,52 @@ class RobotBellboy(RoomObject):
 
 
 
+class HotelCounter(RoomObject):
+    LOOK = "Look behind the COUNTER"
 
-# method for fighting said object:
+    used: bool
 
-    #def fight(self, game: Game, room: Room):
-     #   result = start_battle(game.hero, enemy_sheet.robot_bellboy)
-      #  if result == Outcome.WIN:
-       #     print("The Robot fell apart...")
-        #    room.objects.remove(self)
-         #   game.hero.key_items.append(robot_chip)
-        #elif result == Outcome.LOSS:
-         #   print("You died. Game Over!")
-          #  exit()
+    def __init__(self):
+        self.used = False
+        self.interactions = [
+            HotelCounter.LOOK,
+        ]
 
-# define a door to return to another room:
+    def interact(self, game: Game, room: Room, interaction: str):
+        if interaction == HotelCounter.LOOK:
+            if self.used:
+                print("There's nothing here.")
+            else:
+                print("Behind the counter, you find a yellow book.")
+                user_input = input("Pick up the book? (yes/no)\n> ")
+                if user_input.casefold().strip() == "yes":
+                    if not game.hero.has_spell(magic_sheet.lightning.name):
+                        print("As you touch the yellow book, you gain the power of Lightning!")
+                        sleep(0.5)
+                        game.hero.learn_spell(magic_sheet.lightning, True)
+
+                    elif game.hero.has_spell(magic_sheet.lightning.name):
+                        print("As you touch the yellow book, your power of Lightning becomes stronger!")
+                        sleep(0.5)
+                        game.hero.learn_spell(magic_sheet.lightning_2, True)
+
+                    elif game.hero.has_spell(magic_sheet.lightning_2.name):
+                        print("As you touch the yellow book, your power of Lightning becomes stronger!")
+                        game.hero.learn_spell(magic_sheet.lightning_3, True)
+
+                    elif game.hero.has_spell(magic_sheet.lightning_3.name):
+                        print("As you touch the yellow book...nothing happens.")
+                    self.used = True
+                else:
+                    print("You decide to not touch the book.")
+
+
+
+
+
+
+
+
 class DoorIslandDocks(RoomObject):
     GOTO = "Return to the ISLAND DOCKS"
 

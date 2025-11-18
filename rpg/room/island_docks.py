@@ -88,7 +88,7 @@ class MysteryMan(RoomObject):
 
 
     def fight(self, game: Game, room: Room):
-        result = start_battle(game.hero, enemy_sheet.mystery_man)
+        result = start_battle(game.hero, enemy_sheet.mystery_man, True)
         if result == Outcome.WIN:
             print("The Mystery Man died...or did he?")
             room.objects.remove(self)

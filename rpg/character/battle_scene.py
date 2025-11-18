@@ -1,13 +1,26 @@
 import random
+from time import sleep
 
+from rpg import game
+from rpg.game import Game
 from rpg.character.character import Hero, Enemy
 from rpg.character.outcome import Outcome
 from rpg.item import item
 from rpg.util.clear_screen import clear_screen
 
 
-def start_battle(hero: Hero, enemy: Enemy) -> Outcome:
+def start_battle(hero: Hero, enemy: Enemy, print_msg: bool) -> Outcome:
     clear_screen()
+    sleep(1)
+    if print_msg:
+        print("BATTLE START!")
+        sleep(0.5)
+        print()
+        sleep(0.5)
+        print(f"{hero.name} vs {enemy.name}")
+        sleep(0.5)
+        print()
+        sleep(0.5)
     hero.hp_bar.draw()
     enemy.hp_bar.draw()
     while True:
@@ -45,7 +58,7 @@ def fight(hero: Hero, enemy: Enemy, skip_player: bool):
                 enemy.use_consumable(index)
                 enemy_skip = True
                 break
-    if enemy.mp / enemy.mp_max <= 0.5:
+    if enemy.mp_max > 0 and enemy.mp / enemy.mp_max <= 0.5:
         for index in range(len(enemy.consumables)):
             if "Ether" in enemy.consumables[index].name:
                 enemy.use_consumable(index)

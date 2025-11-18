@@ -38,6 +38,14 @@ class Character:
         if print_msg:
             print(f"{self.name} learned {magic.name}!")
 
+
+    def has_spell(self, spell_name: str) -> bool:
+        for spell in self.spells:
+            if spell.name == spell_name:
+                return True
+        return False
+
+
     def add_consumable(self, item: 'ConsumableItem', amount: int, print_msg: bool):
         for existing_item in self.consumables:
             if existing_item.name == item.name:
@@ -121,11 +129,11 @@ class Character:
     def is_dead(self):
         return self.hp <= 0
 
-    def add_key_item(self, item: 'KeyItem', amount: int):
+    def add_key_item(self, item: 'KeyItem', amount: int, print_msg: bool):
         for existing_item in self.key_items:
             if existing_item.name == item.name:
                 existing_item.amount += amount
-                if amount > 0:
+                if amount > 0 and print_msg:
                     print(f"Received {item.name} x{amount}!")
                 else:
                     print(f"Lost {amount}x {item.name}!")

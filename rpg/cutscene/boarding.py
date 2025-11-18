@@ -12,6 +12,34 @@ from rpg.util.clear_screen import clear_screen
 from rpg.character.battle_scene import start_battle, Outcome
 
 
+def chuck_mode(game: Game):
+    print("+++INITIATING TEST MODE+++")
+    game.hero.learn_spell(magic_sheet.ice, False)
+    game.hero.learn_spell(magic_sheet.fire, False)
+    game.hero.learn_spell(magic_sheet.lightning, False)
+    game.hero.learn_spell(magic_sheet.wind, False)
+    game.hero.learn_spell(magic_sheet.water, False)
+    game.hero.learn_spell(magic_sheet.flare, False)
+    game.hero.learn_spell(magic_sheet.cure, False)
+    game.hero.elemental = "neutral"
+
+    game.hero.equip(weapon_sheet.chuck_sword, False)
+    game.hero.hp_max = 500
+    game.hero.hp = 500
+    game.hero.mp_max = 500
+    game.hero.mp = 500
+
+    game.hero.add_consumable(item_sheet.potion, 5, False)
+    game.hero.add_consumable(item_sheet.hi_potion, 5, False)
+    game.hero.add_consumable(item_sheet.mega_potion, 5, False)
+    game.hero.add_consumable(item_sheet.ether, 5, False)
+    game.hero.add_consumable(item_sheet.hi_ether, 5, False)
+    game.hero.add_consumable(item_sheet.mega_ether, 5, False)
+    game.hero.add_consumable(item_sheet.elixir, 5, False)
+
+
+
+
 class BoardingScene(Cutscene):
     starter_weapons: list[Weapon] = [iron_sword, short_bow, dagger]
     def run(self, game: Game):
@@ -22,31 +50,10 @@ class BoardingScene(Cutscene):
         name_choice = input("> ")
         game.hero.name = name_choice.strip()
 
+
         # TEST/CHEAT MODE "CHUCK"
         if game.hero.name.casefold().strip() == "chuck":
-            print("+++INITIATING TEST MODE+++")
-            game.hero.learn_spell(magic_sheet.ice, False)
-            game.hero.learn_spell(magic_sheet.fire, False)
-            game.hero.learn_spell(magic_sheet.lightning, False)
-            game.hero.learn_spell(magic_sheet.wind, False)
-            game.hero.learn_spell(magic_sheet.water, False)
-            game.hero.learn_spell(magic_sheet.flare, False)
-            game.hero.learn_spell(magic_sheet.cure, False)
-            game.hero.elemental = "neutral"
-
-            game.hero.equip(weapon_sheet.chuck_sword, False)
-            game.hero.hp_max = 500
-            game.hero.hp = 500
-            game.hero.mp_max = 500
-            game.hero.mp = 500
-
-            game.hero.add_consumable(item_sheet.potion, 5, False)
-            game.hero.add_consumable(item_sheet.hi_potion, 5, False)
-            game.hero.add_consumable(item_sheet.mega_potion, 5, False)
-            game.hero.add_consumable(item_sheet.ether, 5, False)
-            game.hero.add_consumable(item_sheet.hi_ether, 5, False)
-            game.hero.add_consumable(item_sheet.mega_ether, 5, False)
-            game.hero.add_consumable(item_sheet.elixir, 5, False)
+            chuck_mode(game)
             return
 
 
@@ -63,7 +70,7 @@ class BoardingScene(Cutscene):
         self.choose_elemental(game)
 
         print("By the way, you will need a few Potions!")
-        game.hero.add_consumable(item_sheet.potion, 5)
+        game.hero.add_consumable(item_sheet.potion, 5, True)
 
         sleep(1)
 
@@ -113,7 +120,7 @@ class BoardingScene(Cutscene):
         user_choice = input("> ")
         if user_choice == "1":
             print("Ferryman: 'An excellent choice!'")
-            game.hero.equip(weapon_sheet.iron_sword)
+            game.hero.equip(weapon_sheet.iron_sword, True)
             self.starter_weapons.remove(iron_sword)
             return
         if user_choice == "2":
