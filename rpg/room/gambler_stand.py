@@ -16,7 +16,6 @@ class Gambler(RoomObject):
     LOOK = "Look at the GAMBLER"
     TALK = "Play the GAMBLER's game of chance"
     FIGHT = "Attack the shady GAMBLER"
-    annoyance: int
     jackpot: list[ConsumableItem | KeyItem] = [
         item_sheet.potion,
         item_sheet.hi_potion,
@@ -30,6 +29,10 @@ class Gambler(RoomObject):
         item_sheet.gorilla_paw
         ]
 
+    annoyance: int
+    game_counter: int
+    already_explained: bool
+
     def __init__(self):
         self.interactions = [
             Gambler.LOOK,
@@ -37,6 +40,8 @@ class Gambler(RoomObject):
             Gambler.FIGHT,
         ]
         self.annoyance = 0
+        self.game_counter = 0
+        self.already_explained = False
 
     def interact(self, game: Game, room: Room, interaction: str):
         if interaction == Gambler.LOOK:
@@ -47,26 +52,32 @@ class Gambler(RoomObject):
             self.fight(game, room)
 
     def talk(self, game: Game, room: Room):
-        print("Gambler: Hello, would you like to play a game?")
-        print("It's simple: I will hide this little ball under one of three shells.")
-        print("I will then shuffle the shells. You have one guess.")
-        print("Do you accept the challenge?(yes/no)")
-        accepted = False
-        while not accepted:
-            choice = input("> ")
-            if choice.casefold().strip() == "yes".casefold():
-                accepted = True
-            else:
-                print(f"...")
-                self.annoyance += 1
-            if self.annoyance == 1:
-                print(f"Come one, please decide and stop wasting my time.")
-            elif self.annoyance == 2:
-                print("Please decide, you're starting to piss me off!")
-            elif self.annoyance >= 3:
-                print(f"STOP. PISSING. ME. OFF!")
-                self.fight(game, room)
-                return
+        if self.game_counter > 5:
+            print(f"Gambler: 'Sorry, but I don't want to play anymore.")
+            return
+        if not self.already_explained:
+            self.already_explained = True
+            print("Gambler: 'Would you like to play a game?'")
+            print("It's simple: I will hide this little ball under one of three shells.")
+            print("I will then shuffle the shells. You must pick the one with the ball under it.")
+            print("You have one guess.")
+            print("Do you accept the challenge?(yes/no)")
+            accepted = False
+            while not accepted:
+                choice = input("> ")
+                if choice.casefold().strip() == "yes".casefold():
+                    accepted = True
+                else:
+                    print(f"...")
+                    self.annoyance += 1
+                if self.annoyance == 1:
+                    print(f"Come one, please decide and stop wasting my time.")
+                elif self.annoyance == 2:
+                    print("Please decide, you're starting to piss me off!")
+                elif self.annoyance >= 3:
+                    print(f"STOP. PISSING. ME. OFF!")
+                    self.fight(game, room)
+                    return
         if self.annoyance < 3:
             print(f"Very well. Let's begin!")
             outcome = self.shell_game()
@@ -77,16 +88,19 @@ class Gambler(RoomObject):
                 sleep(1)
                 print("It's your lucky day!")
                 random_item = random.choice(self.jackpot)
+                self.jackpot.remove(random_item)
                 if isinstance(random_item, ConsumableItem):
                     print("You win a consumable item.")
                     game.hero.add_consumable(random_item, 1, True)
                 else:
                     print("You win a very special item!")
                     game.hero.add_key_item(random_item, 1, True)
+                self.game_counter += 1
             elif outcome == Outcome.LOSS:
                 print("You lost, which means I'm going to take one of YOUR items!")
                 random_item = random.randrange(0,len(game.hero.consumables) - 1)
                 game.hero.add_consumable(game.hero.consumables[random_item], -1, True)
+                self.game_counter += 1
 
 
     def shell_game(self) -> Optional[Outcome]:

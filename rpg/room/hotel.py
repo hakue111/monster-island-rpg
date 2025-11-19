@@ -36,6 +36,23 @@ class RobotBellboy(RoomObject):
     def talk(self, game: Game, room: Room):
         print("Robot Bellboy: Welcome to the Monster Island Grand Hotel.")
         print("What can I do for you?")
+        if item_sheet.robot_chip in game.hero.key_items:
+            sleep(1)
+            print("*BEEEP*")
+            sleep(1)
+            print("Analyzing...")
+            sleep(1)
+            print("*BEEEP*")
+            sleep(1)
+            print("Why do you have a ROBOT CHIP in your inventory?")
+            sleep(1)
+            print("Did you slay one of my ROBOT brethren?")
+            sleep(1)
+            print("ENTITY CLASSIFIED AS POTENTIAL THREAT.")
+            sleep(1)
+            self.fight(game, room)
+            return
+
         while True:
             print("1: 'Why are you a robot?'")
             print("2: 'Can I stay for the night?'")
@@ -71,10 +88,10 @@ class RobotBellboy(RoomObject):
         if result == Outcome.WIN:
             print("The Robot Bellboy fell apart.")
             sleep(1)
-            print("You pick up the ROBOT CHIP that the Robot Bellboy dropped.")
+            print("You pick up the ROBOT CHIP.")
             game.hero.add_key_item(item_sheet.robot_chip, 1, True)
             sleep(1)
-            print("You also pick up a Mega Ether the Robot Bellboy dropped.")
+            print("You pick up the Mega Ether.")
             game.hero.add_consumable(item_sheet.mega_ether, 1, True)
             room.objects.remove(self)
             room.objects.append(HotelCounter())
