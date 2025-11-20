@@ -8,7 +8,7 @@ from rpg.magic.magic import Magic
 from rpg.util.format_color import Color
 
 if typing.TYPE_CHECKING:
-    from rpg.item.item import ConsumableItem, KeyItem
+    from rpg.item.item import ConsumableItem, KeyItem, Item
 
 
 class Character:
@@ -177,13 +177,16 @@ class Enemy(Character):
                  mp: int,
                  elemental: str,
                  weapon: Weapon,
+                 loot: list['Item'] = [],
                  ) -> None:
         super().__init__(name, hp, mp, elemental)
         # Enemy only has one weapon so it does not need equip method
         self.weapon = weapon
-
+        self.loot = loot
         self.hp_bar = HpMpBar(self, hp_color=Color.RED, mp_color=Color.MAGENTA)
 
     def equip(self, weapon: Weapon) -> None:
         self.weapon = weapon
         print(f"{self.name} equipped a(n) {self.weapon.name}!")
+
+

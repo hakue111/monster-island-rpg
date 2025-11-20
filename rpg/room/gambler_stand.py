@@ -127,7 +127,6 @@ class Gambler(RoomObject):
     def fight(self, game: Game, room: Room):
         result = start_battle(game.hero, enemy_sheet.gambler, True)
         if result == Outcome.WIN:
-            print("The gambler dies.")
             game.choices["gambler_dead"] = True
             room.objects.remove(self)
             room.objects.append(GamblingStandCounter())

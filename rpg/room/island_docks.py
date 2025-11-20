@@ -83,10 +83,6 @@ class MysteryMan(RoomObject):
             except ValueError:
                 print(f"Input '{user_input}' not a valid choice!")
 
-
-
-
-
     def fight(self, game: Game, room: Room):
         result = start_battle(game.hero, enemy_sheet.mystery_man, True)
         if result == Outcome.WIN:

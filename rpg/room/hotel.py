@@ -87,12 +87,6 @@ class RobotBellboy(RoomObject):
         result = start_battle(game.hero, enemy_sheet.robot_bellboy, True)
         if result == Outcome.WIN:
             print("The Robot Bellboy fell apart.")
-            sleep(1)
-            print("You pick up the ROBOT CHIP.")
-            game.hero.add_key_item(item_sheet.robot_chip, 1, True)
-            sleep(1)
-            print("You pick up the Mega Ether.")
-            game.hero.add_consumable(item_sheet.mega_ether, 1, True)
             room.objects.remove(self)
             room.objects.append(HotelCounter())
         elif result == Outcome.LOSS:

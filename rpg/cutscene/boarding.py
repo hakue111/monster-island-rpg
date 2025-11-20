@@ -59,18 +59,14 @@ class BoardingScene(Cutscene):
             return
 
 
-
-
-
-
         print(f"Ferryman: So, you are {game.hero.name}? Please board the ferry. We are departing soon.")
         sleep(1)
-        print("Monster Island is too dangerous without a proper weapon. Choose yours:")
+        print("You will need a proper weapon. Choose yours:")
         self.pick_weapon(game)
         sleep(1)
         print("By the way, which of these colors do you like the most?")
         self.choose_elemental(game)
-
+        sleep(1)
         print("By the way, you will need a few Potions!")
         game.hero.add_consumable(item_sheet.potion, 5, True)
 
@@ -162,16 +158,12 @@ class BoardingScene(Cutscene):
         if user_choice == "3":
             print(f"What the fuck are you doing, {game.hero.name}?!")
             ferry_man.equip(self.starter_weapons[random.randrange(0, len(self.starter_weapons)-1)])
-            win = start_battle(game.hero, ferry_man)
+            win = start_battle(game.hero, ferry_man, True)
             if win == Outcome.WIN:
-                print(f"Ferryman: {game.hero.name} what the FUCK HAVE YOU DONE?!")
-                sleep(1)
-                print("Ferryman: Now were are both going to die!")
-                sleep(1)
                 print("The Ferryman dies and the ferry sinks.")
                 sleep(1)
                 print("You drown. Well done, dumbass!")
-                sleep(2)
+                sleep(1)
                 print("GAME OVER")
                 exit()
 
