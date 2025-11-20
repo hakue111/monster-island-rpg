@@ -1,4 +1,6 @@
+import random
 import typing
+from time import sleep
 from typing import Optional
 
 from rpg.character.hp_mp_bar import HpMpBar
@@ -113,10 +115,27 @@ class Character:
 
 
     def attack(self, target) -> None:
-        target.hp -= self.weapon.dmg
+        line = (80 * "-")
+        battle_rng = random.randrange(0, 100)
+        critical_hit: bool = battle_rng <= 15
+        actual_dmg: int = self.weapon.dmg
+        if critical_hit:
+            actual_dmg *= 2
+        target.hp -= actual_dmg
         target.hp = max(target.hp, 0)
         target.hp_bar.update()
-        print(f"{self.name} dealt {self.weapon.dmg} damage to {target.name} with {self.weapon.name}")
+        sleep(0.5)
+        if critical_hit:
+            print(line)
+            print("Critical Hit!!")
+            print(f"{self.name} dealt {actual_dmg} damage to {target.name} with {self.weapon.name}!")
+            print(line)
+            sleep(1)
+        else:
+            print(line)
+            print(f"{self.name} dealt {actual_dmg} damage to {target.name} with {self.weapon.name}!")
+            print(line)
+            sleep(1)
 
 
     def cast_magic(self, target: 'Character', spell: 'Magic'):

@@ -112,20 +112,20 @@ flare = BlackMagic(
 cure = WhiteMagic(
     name="Cure",
     elemental = "neutral",
-    mp_cost=20,
-    heal=20
+    mp_cost=40,
+    heal=40
             )
 cure_2 = WhiteMagic(
     name="Cure2",
     elemental = "neutral",
-    mp_cost=40,
-    heal=40
+    mp_cost=60,
+    heal=60
             )
 cure_3 = WhiteMagic(
     name="Cure3",
     elemental = "neutral",
-    mp_cost=60,
-    heal=60
+    mp_cost=100,
+    heal=100
             )
 
 

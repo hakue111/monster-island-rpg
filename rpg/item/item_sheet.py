@@ -15,8 +15,10 @@ ether: ConsumableItem = ConsumableItem("Ether", "Restores 40 MP.", 1)
 ether.add_effect(RestoreMPEffect(40))
 
 hi_ether: ConsumableItem = ConsumableItem("Hi-Ether", "Restores 60 MP.", 1)
+hi_ether.add_effect(RestoreMPEffect(60))
 
 mega_ether: ConsumableItem = ConsumableItem("Mega-Ether", "Restores 100 MP.", 1)
+ether.add_effect(RestoreMPEffect(100))
 
 elixir: ConsumableItem = ConsumableItem("Elixir", "Restores 100 HP and 100 MP", 1)
 elixir.add_effect(RestoreHPEffect(100))
