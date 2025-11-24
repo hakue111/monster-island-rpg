@@ -10,6 +10,7 @@ class Rpg(Game):
         self.current_room = initial_room
         self.hero = Hero(name="Jane Doe", hp=100, mp=50, elemental="neutral")
         self.choices = {
+            "ferryman_dead": False,
             "gambler_dead": False
         }
 

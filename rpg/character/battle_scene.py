@@ -84,4 +84,5 @@ def fight(hero: Hero, enemy: Enemy, skip_player: bool):
             else:
                 enemy.attack(hero)
     hero.hp_bar.draw()
+    print()
     enemy.hp_bar.draw()

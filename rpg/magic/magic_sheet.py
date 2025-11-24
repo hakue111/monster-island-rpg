@@ -1,4 +1,4 @@
-from rpg.magic.magic import Magic, BlackMagic, WhiteMagic
+from rpg.magic.magic import Magic, BlackMagic, WhiteMagic, EvilMagic
 
 ### ice magic ###
 ice = BlackMagic(
@@ -99,6 +99,28 @@ water_3 = BlackMagic(
     mp_cost=40,
     dmg=40
             )
+
+darkness = EvilMagic(
+    name="Darkness",
+    elemental="darkness",
+    mp_cost=30,
+    dmg=30
+)
+
+darkness_2 = BlackMagic(
+    name="Darkness",
+    elemental="darkness",
+    mp_cost=60,
+    dmg=60
+)
+
+darkness_3 = BlackMagic(
+    name="Darkness",
+    elemental="darkness",
+    mp_cost=90,
+    dmg=90
+)
+
 
 ### neutral black magic ###
 flare = BlackMagic(
