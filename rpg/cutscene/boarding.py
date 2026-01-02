@@ -10,36 +10,7 @@ from rpg.item.weapon_sheet import iron_sword, short_bow, dagger
 from rpg.magic import magic_sheet
 from rpg.util.clear_screen import clear_screen
 from rpg.character.battle_scene import start_battle, Outcome
-
-
-def chuck_mode(game: Game):
-    print("+++INITIATING TEST MODE+++")
-    game.hero.learn_spell(magic_sheet.ice, False)
-    game.hero.learn_spell(magic_sheet.fire, False)
-    game.hero.learn_spell(magic_sheet.lightning, False)
-    game.hero.learn_spell(magic_sheet.wind, False)
-    game.hero.learn_spell(magic_sheet.water, False)
-    game.hero.learn_spell(magic_sheet.darkness, False)
-    game.hero.learn_spell(magic_sheet.flare, False)
-    game.hero.learn_spell(magic_sheet.cure, False)
-    game.hero.elemental = "neutral"
-
-    game.hero.equip(weapon_sheet.chuck_sword, False)
-    game.hero.hp_max = 500
-    game.hero.hp = 500
-    game.hero.mp_max = 500
-    game.hero.mp = 500
-
-    game.hero.add_consumable(item_sheet.potion, 5, False)
-    game.hero.add_consumable(item_sheet.hi_potion, 5, False)
-    game.hero.add_consumable(item_sheet.mega_potion, 5, False)
-    game.hero.add_consumable(item_sheet.ether, 5, False)
-    game.hero.add_consumable(item_sheet.hi_ether, 5, False)
-    game.hero.add_consumable(item_sheet.mega_ether, 5, False)
-    game.hero.add_consumable(item_sheet.elixir, 5, False)
-
-    game.hero.add_key_item(item_sheet.robot_chip,1, False)
-
+from rpg.character.chuck import chuck_mode
 
 
 
@@ -103,9 +74,14 @@ class BoardingScene(Cutscene):
                 sleep(2)
                 print("'Enjoy your new power.'")
             if user_choice == "2":
-                print("Come on, no need to lie. I know what you did. I don't care.")
+                print("You're a bad liar. You deserve to learn EVIL MAGIC.")
                 sleep(2)
-                print("But know this: Monster Island won't be as easy as killing the Ferryman ;) .")
+                game.hero.learn_spell(magic_sheet.darkness, True)
+                game.hero.elemental = "darkness"
+                sleep(2)
+                print("Mystery Man: 'Also, your elemental will change to DARKNESS!")
+                sleep(2)
+                print("'Enjoy your new power.'")
         else:
             print("You arrive on Monster Island. You are greeted by the Mystery Man.")
             print(f"Mystery Man: Welcome to Monster Island, {game.hero.name}. Enjoy your stay...")
@@ -113,7 +89,7 @@ class BoardingScene(Cutscene):
 
     def choose_magic(self, game: Game):
         elemental_info = "'This will also be your own elemental from now on.\nIf elemental and spell match, the spells becomes twice as strong!'"
-        print(f"1: Ice \n2: Fire \n3: Lightning\n4: Wind\n5: Water")
+        print(f"1: Ice \n2: Fire \n3: Lightning\n4: Wind\n5: Water\n6: Cure")
         user_choice = input("> ")
         if user_choice == "1":
             print("Ferryman: 'You shall now be able to cast ICE MAGIC!'")
@@ -144,6 +120,11 @@ class BoardingScene(Cutscene):
             game.hero.learn_spell(magic_sheet.water, True)
             game.hero.elemental = "water"
             return
+        if user_choice == "6":
+            print("Ferryman: 'You shall now be able to cast CURE MAGIC!")
+            print(elemental_info)
+            game.hero.learn_spell(magic_sheet.cure, True)
+            game.hero.elemental = "neutral"
         else:
             print(
             "Alright, if you don't want to answer, you won't learn any spells. Tough luck.")

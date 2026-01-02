@@ -1,3 +1,5 @@
+from time import sleep
+
 from rpg.character import enemy_sheet
 from rpg.character.battle_scene import start_battle
 from rpg.character.outcome import Outcome
@@ -39,12 +41,10 @@ class HugeCrab(RoomObject):
 
 # method for fighting said object:
     def fight(self, game: Game, room: Room):
-        result = start_battle(game.hero, enemy_sheet.robot_bellboy)
+        result = start_battle(game.hero, enemy_sheet.huge_crab, True)
         if result == Outcome.WIN:
             print("The Crab died and falls apart...")
             room.objects.remove(self)
-            game.hero.key_items.append(crab_shell)
-            print(f"{game.hero.name} picked up a mysterious CRAB SHELL.")
         elif result == Outcome.LOSS:
             print("You died. Game Over!")
             exit()
@@ -65,7 +65,7 @@ class DoorIslandDocks(RoomObject):
             game.select_room("island_docks")
 
 # now we define the actual room we're in:
-class Hotel(Room):
+class Beach(Room):
     def __init__(self):
         self.objects = [
             HugeCrab(),

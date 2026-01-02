@@ -126,11 +126,22 @@ class DoorBeach(RoomObject):
         self.interactions = [
             DoorBeach.GOTO,
         ]
-
+        
     def interact(self, game: Game, room: Room, interaction: str):
         if interaction == DoorBeach.GOTO:
             print("You're walking towards the beach.")
             game.select_room("beach")
+
+class DoorArena(RoomObject):
+    GOTO = "Go to the ARENA"
+
+    def __init__(self):
+
+
+    def interact(self, game: Game, room: Room, interaction: str):
+        if interaction == DoorArena.GOTO:
+            print("You're walking towards the arena.")
+            game.select_room("arena")
 
 class IslandDocks(Room):
     def __init__(self):
@@ -139,6 +150,7 @@ class IslandDocks(Room):
             DoorGamblerStand(),
             DoorHotel(),
             DoorBeach()
+
         ]
 
     def describe(self, game: Game):

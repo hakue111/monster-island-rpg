@@ -10,3 +10,4 @@ class Game(abc.ABC):
 
     def select_room(self, room: str):
         self.current_room = room
+

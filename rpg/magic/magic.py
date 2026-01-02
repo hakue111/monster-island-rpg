@@ -90,7 +90,9 @@ class BlackMagic(Magic):
         line = 80 * "-"
         battle_rng = random.randrange(0,100)
         critical_hit: bool = battle_rng <= 10
-        actual_dmg: int = self.dmg * self.weakness(target) * self.stab(caster)
+        actual_dmg: int = self.dmg * self.weakness(target) * self.stab(caster) + caster.stat_matk - target.stat_mdef
+        if actual_dmg < 0:
+            actual_dmg = 0
 
         if caster.mp < self.mp_cost:
             print(f"{caster.name} does not have enough MP to cast {self.name}!")
@@ -130,8 +132,10 @@ class EvilMagic(BlackMagic):
         line = 80 * "-"
         battle_rng = random.randrange(0,100)
         critical_hit: bool = battle_rng <= 10
-        actual_dmg: int = self.dmg * self.weakness(target) * self.stab(caster)
-        recoil_dmg: int = int(actual_dmg * 0.33)
+        actual_dmg: int = self.dmg * self.weakness(target) * self.stab(caster) + caster.stat_matk - target.stat_mdef
+        if actual_dmg < 0:
+            actual_dmg = 0
+        recoil_dmg: int = int(actual_dmg * 0.5)
 
         if caster.mp < self.mp_cost:
             print(f"{caster.name} does not have enough MP to cast {self.name}!")

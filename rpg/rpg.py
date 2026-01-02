@@ -2,6 +2,7 @@ from rpg.character.character import Hero
 from rpg.cutscene.boarding import BoardingScene
 from rpg.game import Game
 from rpg.room import rooms
+from rpg.room.roomobject import RoomObject
 from rpg.util.choose import choose
 
 
@@ -30,8 +31,24 @@ class Rpg(Game):
         for obj in room.objects:
             for interaction in obj.interactions:
                 interactions.append((obj, interaction))
+        virtual_object = VirtualObject()
+        for interaction in virtual_object.interactions:
+            interactions.append((virtual_object, interaction))
         for index in range(len(interactions)):
             obj, interaction = interactions[index]
             print(f"{index + 1}. {interaction}")
         obj, interaction = choose(interactions)
         obj.interact(self, room, interaction)
+
+class VirtualObject(RoomObject):
+    PLAYER_MENU = "Open the Player Menu"
+
+    def __init__(self):
+        self.interactions = [
+            VirtualObject.PLAYER_MENU,
+        ]
+
+    def interact(self, game: Game, room: 'Room', interaction: str):
+        if interaction == VirtualObject.PLAYER_MENU:
+            game.hero.player_menu()
+            return
