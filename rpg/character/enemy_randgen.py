@@ -4,8 +4,8 @@ from rpg.item.item_sheet import *
 from rpg.magic.magic_sheet import *
 import random
 
-random_adj = ["Tricky", "Nutty", "Proud", "Slippery", "Dramatic", "Wooden", "Orange", "Special", "Wacky", "Jolly", "Angry", "Funny", "Big", "Lil'", "Horny"]
-random_noun = ["Man", "Woman", "Robber", "Zombie", "Ghost", "Soldier", "Adventurer", "Dude", "Elf", "Mutant", "Thief", "Demon", "Monster"]
+random_adj = ["Tricky", "Nutty", "Proud", "Slippery", "Dramatic", "Wooden", "Creepy", "Special", "Wacky", "Jolly", "Angry", "Funny", "Big", "Lil'", "Horny", "Nightmarish", "Scary"]
+random_noun = ["Man", "Woman", "Robber", "Zombie", "Ghost", "Soldier", "Adventurer", "Dude", "Elf", "Mutant", "Thief", "Demon", "Monster", "Hacker"]
 
 
 spells = [ice, ice_2, ice_3, fire, fire_2, fire_3, lightning, lightning_2, lightning_3, wind, wind_2, wind_3, water, water_2, water_3, darkness, flare, cure, cure_2, cure_3]

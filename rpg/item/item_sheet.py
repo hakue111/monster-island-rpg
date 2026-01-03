@@ -2,20 +2,23 @@ from rpg.item.effect import RestoreHPEffect, RestoreMPEffect
 from rpg.item.item import ConsumableItem, KeyItem
 
 # CONSUMABLE ITEMS
+##TIER 1
 potion: ConsumableItem = ConsumableItem("Potion", "Restores 40 HP.", 1)
 potion.add_effect(RestoreHPEffect(40))
-
-hi_potion: ConsumableItem = ConsumableItem("Hi-Potion", "Restores 60 HP.", 1)
-hi_potion.add_effect(RestoreHPEffect(60))
-
-mega_potion: ConsumableItem = ConsumableItem("Mega-Potion", "Restores 100 HP.", 1)
-mega_potion.add_effect(RestoreHPEffect(100))
 
 ether: ConsumableItem = ConsumableItem("Ether", "Restores 40 MP.", 1)
 ether.add_effect(RestoreMPEffect(40))
 
+##TIER 2
+hi_potion: ConsumableItem = ConsumableItem("Hi-Potion", "Restores 60 HP.", 1)
+hi_potion.add_effect(RestoreHPEffect(60))
+
 hi_ether: ConsumableItem = ConsumableItem("Hi-Ether", "Restores 60 MP.", 1)
 hi_ether.add_effect(RestoreMPEffect(60))
+
+##TIER 3
+mega_potion: ConsumableItem = ConsumableItem("Mega-Potion", "Restores 100 HP.", 1)
+mega_potion.add_effect(RestoreHPEffect(100))
 
 mega_ether: ConsumableItem = ConsumableItem("Mega-Ether", "Restores 100 MP.", 1)
 mega_ether.add_effect(RestoreMPEffect(100))
