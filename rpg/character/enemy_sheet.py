@@ -1,4 +1,3 @@
-from rpg.character.enemy_gen_rng import enemy_generator
 from rpg.item import item_sheet
 from rpg.item.item_sheet import mega_ether, mega_potion, elixir, hi_ether, hi_potion, robot_chip, crab_shell, \
     gorilla_paw, ether
@@ -49,7 +48,3 @@ gorilla.set_stats(30, 20, 10, 10, 5, 5)
 
 random_dude: Enemy = Enemy("Random Dude", 50, 50, "neutral", fists, [ether], 100)
 random_dude.set_stats(5, 5, 5, 5, 5, 5)
-
-#random_enemy: Enemy = Enemyenemy_generator()
-
-

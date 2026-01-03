@@ -113,13 +113,16 @@ class Character:
             del self.consumables[index]
         return True
 
-    # basically INVENTORY
-    # bc we want to print consumable items in fights, not key items
-    def print_consumables(self, print_msg: bool = False):
+    def print_consumables(self):
         print("Inventory: ")
         for index in range(len(self.consumables)):
             item = self.consumables[index]
             print(f"{index + 1}: {item.name} x{item.amount} - {item.description}.")
+
+    # basically INVENTORY
+    # bc we want to print consumable items in fights, not key items
+    def choose_consumable(self, print_msg: bool = False):
+        self.print_consumables()
         user_input = input("[index] to use item or back.\n> ")
         if user_input.casefold().strip() == "back":
             return False
@@ -142,12 +145,14 @@ class Character:
                 print("Invalid choice.")
                 return None
 
-
-    def print_spells(self, target: 'Character'):
+    def print_spells(self):
         print("Magic Spells: ")
         for index in range(len(self.spells)):
             spell = self.spells[index]
             print(f"{index + 1}: {spell.name}")
+
+    def choose_spell(self, target: 'Character'):
+        self.print_spells()
         print("[index] to cast spell or type 'back'.")
         spell = self._choose_spell(self.spells)
         if spell is None:
@@ -217,6 +222,9 @@ class Character:
                 return True
         return False
 
+    def __str__(self):
+        return f"{self.__class__.__name__}('{self.name}', hp={self.hp}, mp={self.mp}, elemental={self.elemental})"
+
 
 class Hero(Character):
     def __init__(self,
@@ -258,7 +266,7 @@ class Hero(Character):
         print(f"🔑 Key Items: {", ".join(key_items)}")
         print()
         print(f"🏺 Consumable Items: ")
-        self.print_consumables()
+        self.choose_consumable()
 
     #def gain_xp
 
