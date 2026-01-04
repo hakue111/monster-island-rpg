@@ -68,7 +68,7 @@ class BoardingScene(Cutscene):
                 print("You are some evil motherfucker. You will feel right at home here.")
                 sleep(2)
                 print("'You truly deserve a fitting MAGIC spell!")
-                game.hero.learn_spell(magic_sheet.darkness, True)
+                game.hero.learn_spell(magic_sheet.dark, True)
                 game.hero.elemental = "darkness"
                 print("Mystery Man: 'Also, your elemental will change to DARKNESS!")
                 sleep(2)
@@ -76,7 +76,7 @@ class BoardingScene(Cutscene):
             if user_choice == "2":
                 print("You're a bad liar. You deserve to learn EVIL MAGIC.")
                 sleep(2)
-                game.hero.learn_spell(magic_sheet.darkness, True)
+                game.hero.learn_spell(magic_sheet.dark, True)
                 game.hero.elemental = "darkness"
                 sleep(2)
                 print("Mystery Man: 'Also, your elemental will change to DARKNESS!")
@@ -94,7 +94,7 @@ class BoardingScene(Cutscene):
         if user_choice == "1":
             print("Ferryman: 'You shall now be able to cast ICE MAGIC!'")
             print(elemental_info)
-            game.hero.learn_spell(magic_sheet.ice, True)
+            game.hero.learn_spell(magic_sheet.blizzard, True)
             game.hero.elemental = "ice"
             return
         if user_choice == "2":
@@ -106,12 +106,12 @@ class BoardingScene(Cutscene):
         if user_choice == "3":
             print("Ferryman: 'You shall now be able to cast LIGHTNING MAGIC!'")
             print(elemental_info)
-            game.hero.learn_spell(magic_sheet.lightning, True)
+            game.hero.learn_spell(magic_sheet.thunder, True)
             return
         if user_choice == "4":
             print("Ferryman: 'You shall now be able to cast WIND MAGIC!")
             print(elemental_info)
-            game.hero.learn_spell(magic_sheet.wind, True)
+            game.hero.learn_spell(magic_sheet.aero, True)
             game.hero.elemental = "wind"
             return
         if user_choice == "5":

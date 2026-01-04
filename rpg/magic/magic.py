@@ -11,14 +11,22 @@ class Magic:
     def __init__(self,
                  name: str,
                  elemental: str,
-                 mp_cost: int
+                 mp_cost: int,
+                 tier: int
                  ):
         self.name = name
         self.elemental = elemental
         self.mp_cost = mp_cost
+        self.tier = tier
 
     def cast_magic(self, caster: 'Character', target: 'Character'):
         raise NotImplementedError()
+
+    def __str__(self):
+        return f"{self.__class__.__name__}(name={self.name},elemental={self.elemental},mp_cost={self.mp_cost},tier={self.tier})"
+
+    def __repr__(self):
+        return self.__str__()
 
 
 class WhiteMagic(Magic):
@@ -26,9 +34,10 @@ class WhiteMagic(Magic):
                  name: str,
                  elemental: str,
                  mp_cost: int,
-                 heal: int
+                 heal: int,
+                 tier: int
                  ):
-        super().__init__(name, elemental, mp_cost)
+        super().__init__(name, elemental, mp_cost, tier)
         self.heal = heal
 
     def cast_magic(self, caster: 'Character', target: 'Character'):
@@ -47,9 +56,10 @@ class BlackMagic(Magic):
                  name: str,
                  elemental: str,
                  mp_cost: int,
-                 dmg: int
+                 dmg: int,
+                 tier: int
                  ):
-        super().__init__(name, elemental, mp_cost)
+        super().__init__(name, elemental, mp_cost, tier)
         self.dmg = dmg
 
 
@@ -123,9 +133,10 @@ class EvilMagic(BlackMagic):
                  name: str,
                  elemental: str,
                  mp_cost: int,
-                 dmg: int
+                 dmg: int,
+                 tier: int
                  ):
-        super().__init__(name, elemental, mp_cost, dmg)
+        super().__init__(name, elemental, mp_cost, dmg, tier)
         self.dmg = dmg
 
     def cast_magic(self, caster: 'Character', target: 'Character'):

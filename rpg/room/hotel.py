@@ -115,21 +115,21 @@ class HotelCounter(RoomObject):
                 print("Behind the counter, you find a yellow book.")
                 user_input = input("Pick up the book? (yes/no)\n> ")
                 if user_input.casefold().strip() == "yes":
-                    if not game.hero.has_spell(magic_sheet.lightning.name):
+                    if not game.hero.has_spell(magic_sheet.thunder.name):
                         print("As you touch the yellow book, you gain the power of Lightning!")
                         sleep(0.5)
-                        game.hero.learn_spell(magic_sheet.lightning, True)
+                        game.hero.learn_spell(magic_sheet.thunder, True)
 
-                    elif game.hero.has_spell(magic_sheet.lightning.name):
+                    elif game.hero.has_spell(magic_sheet.thunder.name):
                         print("As you touch the yellow book, your power of Lightning becomes stronger!")
                         sleep(0.5)
-                        game.hero.learn_spell(magic_sheet.lightning_2, True)
+                        game.hero.learn_spell(magic_sheet.thundara, True)
 
-                    elif game.hero.has_spell(magic_sheet.lightning_2.name):
+                    elif game.hero.has_spell(magic_sheet.thundara.name):
                         print("As you touch the yellow book, your power of Lightning becomes stronger!")
-                        game.hero.learn_spell(magic_sheet.lightning_3, True)
+                        game.hero.learn_spell(magic_sheet.thundaga, True)
 
-                    elif game.hero.has_spell(magic_sheet.lightning_3.name):
+                    elif game.hero.has_spell(magic_sheet.thundaga.name):
                         print("As you touch the yellow book...nothing happens.")
                     self.used = True
                 else:

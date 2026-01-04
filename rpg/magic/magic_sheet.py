@@ -1,23 +1,26 @@
 from rpg.magic.magic import Magic, BlackMagic, WhiteMagic, EvilMagic
 
 ### ice magic ###
-ice = BlackMagic(
-    name="Ice",
+blizzard = BlackMagic(
+    name="Blizzard",
     elemental="ice",
     mp_cost=10,
-    dmg=10
+    dmg=10,
+    tier=1
             )
-ice_2 = BlackMagic(
-    name="Ice2",
+blizzara = BlackMagic(
+    name="Blizzara",
     elemental="ice",
     mp_cost=20,
-    dmg=20
+    dmg=20,
+    tier=2
             )
-ice_3 = BlackMagic(
-    name="Ice3",
+blizzaga = BlackMagic(
+    name="Blizzaga",
     elemental="ice",
     mp_cost=40,
-    dmg=40
+    dmg=40,
+    tier=3
             )
 
 ### fire magic ###
@@ -25,59 +28,68 @@ fire = BlackMagic(
     name="Fire",
     elemental="fire",
     mp_cost=10,
-    dmg=10
+    dmg=10,
+    tier=1
             )
-fire_2 = BlackMagic(
-    name="Fire2",
+fira = BlackMagic(
+    name="Fira",
     elemental="fire",
     mp_cost=20,
-    dmg=20
+    dmg=20,
+    tier=2
             )
-fire_3 = BlackMagic(
-    name="Fire3",
+firaga = BlackMagic(
+    name="Firaga",
     elemental="fire",
     mp_cost=40,
-    dmg=40
+    dmg=40,
+    tier=3
             )
 
 ### lightning magic ###
-lightning = BlackMagic(
-    name="Lightning",
+thunder = BlackMagic(
+    name="Thunder",
     elemental="lightning",
     mp_cost=10,
-    dmg=10
+    dmg=10,
+    tier=1
             )
-lightning_2 = BlackMagic(
-    name="Lightning2",
+thundara = BlackMagic(
+    name="Thundara",
     elemental="lightning",
     mp_cost=20,
-    dmg=20
+    dmg=20,
+    tier=2
             )
-lightning_3 = BlackMagic(
-    name="Lightning3",
+thundaga = BlackMagic(
+    name="Thundaga",
     elemental="lightning",
     mp_cost=40,
-    dmg=40
+    dmg=40,
+    tier=3
             )
 
 ### wind magic ###
-wind = BlackMagic(
-    name="Wind",
+aero = BlackMagic(
+    name="Aero",
     elemental="wind",
     mp_cost=10,
-    dmg=10
+    dmg=10,
+    tier=1
             )
-wind_2 = BlackMagic(
-    name="Wind2",
+aerora = BlackMagic(
+    name="Aerora",
     elemental="wind",
     mp_cost=20,
-    dmg=20
+    dmg=20,
+    tier=2
             )
-wind_3 = BlackMagic(
-    name="Wind3",
+aeroga = BlackMagic(
+    name="Aeroga",
     elemental="wind",
     mp_cost=40,
-    dmg=40
+    dmg=40,
+    tier=3
             )
 
 ### water magic ###
@@ -85,40 +97,46 @@ water = BlackMagic(
     name="Water",
     elemental="water",
     mp_cost=10,
-    dmg=10
+    dmg=10,
+    tier=1
             )
-water_2 = BlackMagic(
-    name="Water2",
+watera = BlackMagic(
+    name="Watera",
     elemental="water",
     mp_cost=20,
-    dmg=20
+    dmg=20,
+    tier=2
             )
-water_3 = BlackMagic(
-    name="Water3",
+waterga = BlackMagic(
+    name="Waterga",
     elemental="water",
     mp_cost=40,
-    dmg=40
+    dmg=40,
+    tier=3
             )
 
-darkness = EvilMagic(
-    name="Darkness",
+dark = EvilMagic(
+    name="Dark",
     elemental="darkness",
     mp_cost=30,
-    dmg=30
+    dmg=30,
+    tier=1
 )
 
-darkness_2 = BlackMagic(
-    name="Darkness",
+darkra = BlackMagic(
+    name="Darkra",
     elemental="darkness",
     mp_cost=60,
-    dmg=60
+    dmg=60,
+    tier=2
 )
 
-darkness_3 = BlackMagic(
-    name="Darkness",
+darkga = BlackMagic(
+    name="Darkga",
     elemental="darkness",
     mp_cost=90,
-    dmg=90
+    dmg=90,
+    tier=3
 )
 
 
@@ -127,7 +145,8 @@ flare = BlackMagic(
     name="Flare",
     elemental = "neutral",
     mp_cost=50,
-    dmg=50
+    dmg=50,
+    tier=3
             )
 
 ### white magic ###
@@ -135,20 +154,22 @@ cure = WhiteMagic(
     name="Cure",
     elemental = "neutral",
     mp_cost=40,
-    heal=40
+    heal=40,
+    tier=1
             )
-cure_2 = WhiteMagic(
-    name="Cure2",
+cura = WhiteMagic(
+    name="Cura",
     elemental = "neutral",
     mp_cost=60,
-    heal=60
+    heal=60,
+    tier=2
             )
-cure_3 = WhiteMagic(
-    name="Cure3",
+curaga = WhiteMagic(
+    name="Curaga",
     elemental = "neutral",
     mp_cost=100,
-    heal=100
+    heal=100,
+    tier=3
             )
-
 
 

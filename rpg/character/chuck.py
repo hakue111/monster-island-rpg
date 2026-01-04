@@ -5,14 +5,14 @@ from rpg.magic import magic_sheet
 
 def chuck_mode(game: Game):
     print("+++INITIATING TEST MODE+++")
-    game.hero.learn_spell(magic_sheet.ice, False)
+    game.hero.learn_spell(magic_sheet.blizzard, False)
     game.hero.learn_spell(magic_sheet.fire, False)
-    game.hero.learn_spell(magic_sheet.lightning, False)
-    game.hero.learn_spell(magic_sheet.wind, False)
+    game.hero.learn_spell(magic_sheet.thunder, False)
+    game.hero.learn_spell(magic_sheet.aero, False)
     game.hero.learn_spell(magic_sheet.water, False)
     game.hero.learn_spell(magic_sheet.flare, False)
     game.hero.learn_spell(magic_sheet.cure, False)
-    game.hero.learn_spell(magic_sheet.darkness, False)
+    game.hero.learn_spell(magic_sheet.dark, False)
     game.hero.elemental = "neutral"
 
     game.hero.equip(weapon_sheet.chuck_sword, False)

@@ -34,7 +34,7 @@ def randweapon_gen(tier: int):
         print(randweapon_t3)
 
 
-randweapon_gen(random.randint(1, 3))
+#randweapon_gen(random.randint(1, 3))
 
 
 

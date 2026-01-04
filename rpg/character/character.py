@@ -280,12 +280,15 @@ class Enemy(Character):
                  elemental: str,
                  weapon: Weapon,
                  loot: list['Item'] = [],
-                 xp_drop: int = 10
+                 xp_drop: int = 10,
+                 tier: int = 1
                  ) -> None:
         super().__init__(name, hp, mp, elemental)
         # Enemy only has one weapon so it does not need equip method
         self.weapon = weapon
         self.loot = loot
+        self.xp_drop = xp_drop
+        self.tier = tier
         self.hp_bar = HpMpBar(self, hp_color=Color.RED, mp_color=Color.MAGENTA)
 
 
