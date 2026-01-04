@@ -12,3 +12,6 @@ class Weapon:
     def __str__(self):
         return f"Weapon(name='{self.name}', dmg={self.dmg}, value={self.value}, tier={self.tier})"
 
+    def __repr__(self):
+        return self.__str__()
+

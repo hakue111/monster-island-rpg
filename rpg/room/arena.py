@@ -12,7 +12,7 @@ from rpg.room.room import Room
 from rpg.room.roomobject import RoomObject
 from rpg.util import helpers
 from rpg.util.helpers import print_ws
-from rpg.character.enemy_randgen import enemy_generator
+from rpg.character.enemy_randgen import randenemy_gen
 
 
 # first we define the object that is present and interactable in the room:
