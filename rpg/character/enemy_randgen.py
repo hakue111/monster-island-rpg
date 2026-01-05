@@ -44,15 +44,22 @@ items_tier3 = [mega_potion, mega_ether, elixir]
 
 
 def randenemy_gen(tier: int):
-    randenemy: Enemy = Enemy(random_name, random_hp, random_mp, random_elemental, random_weapon, [random_loot],
-                             random_xpdrop)
-    randenemy.set_stats(random_atk, random_def, random_matk, random_mdef, random_acc, random_eva)
-    for item in random_consumables:
-        randenemy.add_consumable(item, random.randint(0, 2), False)
-    for spell in random_spells:
-        randenemy.learn_spell(spell, False)
+    random_name: str
+    random_hp: int
+    random_mp: int
+    random_elemental: str
+    random_weapon: Weapon
+    random_loot: list[ConsumableItem]
+    random_xpdrop: int
+    random_atk: int
+    random_def: int
+    random_matk: int
+    random_mdef: int
+    random_acc: int
+    random_eva: int
+    random_consumables: list[ConsumableItem]
+    random_spells: list[Magic]
 
-    return randenemy
     if tier == 1:
         random_name = random.choice(adj_tier1) + " " + random.choice(random_noun)
         random_hp = random.randint(40,60)
@@ -102,16 +109,6 @@ def randenemy_gen(tier: int):
             if any ((spell_drawn.elemental == spell.elemental for spell in random_spells)):
                 continue
             random_spells.append(spell_drawn)
-
-        randenemy: Enemy = Enemy(random_name, random_hp, random_mp, random_elemental, random_weapon, [random_loot], random_xpdrop)
-        randenemy.set_stats(random_atk, random_def, random_matk, random_mdef, random_acc, random_eva)
-        for item in random_consumables:
-            randenemy.add_consumable(item, random.randint(0,2), False)
-        for spell in random_spells:
-            randenemy.learn_spell(spell, False)
-
-        return randenemy
-
     elif tier == 3:
         random_name = random.choice(adj_tier3) + " " + random.choice(random_noun)
         random_hp = random.randint(91, 120)
@@ -137,20 +134,22 @@ def randenemy_gen(tier: int):
                 continue
             random_spells.append(spell_drawn)
 
-        randenemy: Enemy = Enemy(random_name, random_hp, random_mp, random_elemental, random_weapon, [random_loot], random_xpdrop)
-        randenemy.set_stats(random_atk, random_def, random_matk, random_mdef, random_acc, random_eva)
-        for item in random_consumables:
-            randenemy.add_consumable(item, random.randint(0,2), False)
-        for spell in random_spells:
-            randenemy.learn_spell(spell, False)
-        return randenemy
+    randenemy: Enemy = Enemy(
+        random_name, random_hp, random_mp, random_elemental, random_weapon, [random_loot],
+                             random_xpdrop)
+    randenemy.set_stats(random_atk, random_def, random_matk, random_mdef, random_acc, random_eva)
+    for item in random_consumables:
+        randenemy.add_consumable(item, random.randint(0, 2), False)
+    for spell in random_spells:
+        randenemy.learn_spell(spell, False)
+
+    return randenemy
 
 
 enemy1 = randenemy_gen(1)
 print(enemy1)
 enemy1.print_consumables()
 enemy1.print_spells()
-enemy1.print_
 
 enemy2 = randenemy_gen(2)
 print(enemy2)
