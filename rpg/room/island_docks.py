@@ -136,6 +136,9 @@ class DoorArena(RoomObject):
     GOTO = "Go to the ARENA"
 
     def __init__(self):
+        self.interactions = [
+            DoorArena.GOTO,
+        ]
 
 
     def interact(self, game: Game, room: Room, interaction: str):
@@ -149,8 +152,8 @@ class IslandDocks(Room):
             MysteryMan(),
             DoorGamblerStand(),
             DoorHotel(),
-            DoorBeach()
-
+            DoorBeach(),
+            DoorArena(),
         ]
 
     def describe(self, game: Game):
