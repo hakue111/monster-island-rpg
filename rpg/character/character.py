@@ -225,6 +225,9 @@ class Character:
     def __str__(self):
         return f"{self.__class__.__name__}('{self.name}', hp={self.hp}, mp={self.mp}, elemental={self.elemental})"
 
+    def __repr__(self):
+        return self.__str__()
+
 
 class Hero(Character):
     def __init__(self,

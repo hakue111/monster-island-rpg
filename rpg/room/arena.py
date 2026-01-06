@@ -13,25 +13,22 @@ from rpg.room.roomobject import RoomObject
 from rpg.util import helpers
 from rpg.util.helpers import print_ws
 from rpg.character.enemy_randgen import randenemy_gen
+from rpg.room.arena_contests import *
 
 
 # first we define the object that is present and interactable in the room:
 class ArenaReceptionist(RoomObject):
     TALK = "Talk to the ARENA Receptionist"
-    FIGHT = "Attack the ARENA Receptionist."
 
 # constructor for interactions with said object:
     def __init__(self):
         self.interactions = [
             ArenaReceptionist.TALK,
-            #ArenaReceptionist.FIGHT
         ]
 # method for interaction with said object:
     def interact(self, game: Game, room: Room, interaction: str):
         if interaction == ArenaReceptionist.TALK:
             self.talk(game, room)
-        #elif interaction == ArenaReceptionist.FIGHT:
-            #self.fight(game, room)
 
     def talk(self, game: Game, room: Room):
         print_ws("Welcome to the Monster Island ARENA.")
@@ -50,14 +47,14 @@ class ArenaReceptionist(RoomObject):
                 elif index == 2:
                     print_ws("Every contest consists of 5 battles.")
                     print_ws("You have to win all 5 fights in a row to get the prize!")
-                    #write the contests
-                    print_ws("You will randomly receive HP or MP restores after every battle.")
-                    #write method for random hp/mp restore
-                    print_ws("Losing will not kill you. If you lose, your HP and MP will be fully restored")
+                    print_ws("Losing will not kill you. If you lose, your HP and MP will be fully restored.")
                 elif index == 3:
-                    print_ws("Which list do you want to fight?")
+                    print_ws("Which tier do you want to fight?")
+                    print_ws("1: [TIER 1]")
+                    print_ws("2: [TIER 2]'")
+                    print_ws("3: '[TIER 3]")
 
-                    self.fight(game, room)
+                    self.arena_fight(game, room)
                     return
                 elif index == 4:
                     return

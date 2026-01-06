@@ -46,7 +46,6 @@ gorilla.add_consumable(item_sheet.mega_potion, 1, False)
 gorilla.set_stats(30, 20, 10, 10, 5, 5)
 
 
-receptionist: Enemy = Enemy("ARENA Receptionist", 50, 50, "neutral", dagger, [ether], 100)
-receptionist.set_stats(5, 5, 5, 5, 5, 5)
-receptionist.add_consumable(item_sheet.ether, 1, False)
-receptionist.learn_spell(magic_sheet.cure, False)
+### ARENA ENEMIES
+## contest 1
+#arena_enemy1:

@@ -7,8 +7,8 @@ from rpg.item.weapon_randgen import *
 import random
 
 ## NAME GEN
-random_noun = ["Man", "Woman", "Robber", "Zombie", "Ghost", "Soldier", "Adventurer", "Dude", "Elf", "Mutant", "Thief", "Demon", "Monster", "Hacker", "Fucker"]
-adj_tier1 = ["Regular", "Nutty", "Wooden", "Wacky", "Jolly", "Funny", "Lil'"]
+random_noun = ["Man", "Woman", "Robber", "Zombie", "Ghost", "Soldier", "Adventurer", "Dude", "Elf", "Mutant", "Thief", "Demon", "Monster", "Hacker", "Fucker", "Troll", "Clown", "Vampire", "Ogre", "Ghoul", "Alien", "Werewolf", "Doll", "Gorilla", "Fiend", "Kobold", "Gnome", "Sage", "Skeleton", "Robot"]
+adj_tier1 = ["Regular", "Nutty", "Wooden", "Wacky", "Jolly", "Funny", "Lil'", "Boring"]
 adj_tier2 = ["Proud", "Dramatic", "Creepy", "Angry", "Horny", "Tall", "Spooky"]
 adj_tier3 = ["Professional", "Super", "Nightmarish", "Scary", "Special", "Big", "Evil"]
 
@@ -64,8 +64,8 @@ def randenemy_gen(tier: int):
         random_name = random.choice(adj_tier1) + " " + random.choice(random_noun)
         random_hp = random.randint(40,60)
         random_mp = random.randint(40,60)
-        random_elemental = random.choice([random_element])
-        random_weapon = random.choice([randweapon_gen(1)])
+        random_elemental = random.choice(random_element)
+        random_weapon = randweapon_gen(1)
         random_loot = random.sample(items_tier1, k= random.randint(0,1))
         #make sure the random xpdrop is tied to overall stats and power
         random_xpdrop = random.randint(50,100)
@@ -145,18 +145,23 @@ def randenemy_gen(tier: int):
 
     return randenemy
 
+# tests
+if __name__ == "__main__":
+    enemy1 = randenemy_gen(1)
+    print(enemy1)
+    print(enemy1.weapon)
+    enemy1.print_consumables()
+    enemy1.print_spells()
 
-enemy1 = randenemy_gen(1)
-print(enemy1)
-enemy1.print_consumables()
-enemy1.print_spells()
+    enemy2 = randenemy_gen(2)
+    print(enemy2)
+    print(enemy2.weapon)
+    enemy2.print_consumables()
+    enemy2.print_spells()
 
-enemy2 = randenemy_gen(2)
-print(enemy2)
-enemy2.print_consumables()
-enemy2.print_spells()
 
-enemy3 = randenemy_gen(3)
-print(enemy3)
-enemy3.print_consumables()
-enemy3.print_spells()
+    enemy3 = randenemy_gen(3)
+    print(enemy3)
+    print(enemy3.weapon)
+    enemy3.print_consumables()
+    enemy3.print_spells()
