@@ -32,6 +32,12 @@ class ConsumableItem(Item):
         for effect in self.effects:
             effect.apply_effect(character, self)
 
+    def __str__(self):
+        return f"Consumable Item(name='{self.name}', description={self.description}, amount={self.amount})"
+
+    def __repr__(self):
+        return self.__str__()
+
 
 class KeyItem(Item):
     def __init__(self,

@@ -2,7 +2,6 @@ from time import sleep
 
 from rpg.character import enemy_sheet
 from rpg.character.battle_scene import start_battle
-from rpg.character.enemy_sheet import receptionist
 from rpg.character.outcome import Outcome
 from rpg.game import Game
 from rpg.item import item_sheet
@@ -14,6 +13,7 @@ from rpg.util import helpers
 from rpg.util.helpers import print_ws
 from rpg.character.enemy_randgen import randenemy_gen
 from rpg.room.arena_contests import *
+from arena_contests import contest_gen
 
 
 # first we define the object that is present and interactable in the room:
@@ -50,24 +50,28 @@ class ArenaReceptionist(RoomObject):
                     print_ws("Losing will not kill you. If you lose, your HP and MP will be fully restored.")
                 elif index == 3:
                     print_ws("Which tier do you want to fight?")
-                    print_ws("1: [TIER 1]")
-                    print_ws("2: [TIER 2]'")
-                    print_ws("3: '[TIER 3]")
-
-                    self.arena_fight(game, room)
+                    print_ws("1: [TIER I]")
+                    print_ws("2: [TIER II]'")
+                    print_ws("3: '[TIER III]")
+                    if user_input.strip() == 1:
+                        self.arena_fight(game, room, 1)
+                    elif user_input.strip() == 2:
+                        self.arena_fight(game, room, 2)
+                    elif user_input.strip() == 3:
+                        self.arena_fight(game, room, 3)
                     return
                 elif index == 4:
                     return
             except ValueError:
                 print(f"Input '{user_input}' is not a valid choice!")
 
-
-    def arena_fight(self, game: Game, room: Room):
-        result = start_battle(game.hero, receptionist)
+    def arena_fight(self, game: Game, room: Room, tier: int):
+        arena_enemy = contest_gen(tier)
+        result = start_battle(game.hero, arena_enemy)
         if result == Outcome.WIN:
             print_ws("You win!")
             room.objects.remove(self)
-            elif result == Outcome.LOSS:
+        elif result == Outcome.LOSS:
             print_ws("You lost!")
             print_ws()
 

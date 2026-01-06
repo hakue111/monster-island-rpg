@@ -12,6 +12,12 @@ class Effect:
     def apply_effect(self, character: 'Character', item: 'ConsumableItem'):
         raise NotImplementedError
 
+    #def __str__(self):
+        #return f"Consumable Item(name='{self.character}', description={self.description}, amount={self.amount}, effects={self.effects})"
+
+    #def __repr__(self):
+        #return self.__str__()
+
 
 class RestoreHPEffect(Effect):
     def __init__(self, restore: int):
