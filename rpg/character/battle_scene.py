@@ -53,7 +53,7 @@ def start_battle(hero: Hero, enemy: Enemy, print_msg: bool) -> Outcome:
                     elif isinstance(item, KeyItem):
                         hero.add_key_item(item, 1, True)
                     else:
-                        raise Exception("Unknown item type")
+                        raise Exception(f"Unknown item type: {item}")
                     sleep(0.5)
 
             return Outcome.WIN

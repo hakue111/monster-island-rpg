@@ -13,7 +13,7 @@ from rpg.util import helpers
 from rpg.util.helpers import print_ws
 from rpg.character.enemy_randgen import randenemy_gen
 from rpg.room.arena_contests import *
-from arena_contests import contest_gen
+from rpg.room.arena_contests import contest_gen
 
 
 # first we define the object that is present and interactable in the room:
@@ -53,12 +53,15 @@ class ArenaReceptionist(RoomObject):
                     print_ws("1: [TIER I]")
                     print_ws("2: [TIER II]'")
                     print_ws("3: '[TIER III]")
-                    if user_input.strip() == 1:
+                    user_input = input("> ")
+                    if user_input.strip() == "1":
                         self.arena_fight(game, room, 1)
-                    elif user_input.strip() == 2:
+                    elif user_input.strip() == "2":
                         self.arena_fight(game, room, 2)
-                    elif user_input.strip() == 3:
+                    elif user_input.strip() == "3":
                         self.arena_fight(game, room, 3)
+                    else:
+                        print("Invalid choice.")
                     return
                 elif index == 4:
                     return
@@ -67,13 +70,14 @@ class ArenaReceptionist(RoomObject):
 
     def arena_fight(self, game: Game, room: Room, tier: int):
         arena_enemy = contest_gen(tier)
-        result = start_battle(game.hero, arena_enemy)
-        if result == Outcome.WIN:
-            print_ws("You win!")
-            room.objects.remove(self)
-        elif result == Outcome.LOSS:
-            print_ws("You lost!")
-            print_ws()
+        for enemy in arena_enemy:
+            result = start_battle(game.hero, enemy, True)
+            if result == Outcome.WIN:
+                print_ws("You win!")
+            elif result == Outcome.LOSS:
+                print_ws("You lost!")
+                break
+                print_ws()
 
 
 

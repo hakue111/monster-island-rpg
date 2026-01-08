@@ -49,7 +49,7 @@ def randenemy_gen(tier: int):
     random_mp: int
     random_elemental: str
     random_weapon: Weapon
-    random_loot: list[ConsumableItem]
+    #random_loot: list[ConsumableItem]
     random_xpdrop: int
     random_atk: int
     random_def: int
@@ -66,7 +66,7 @@ def randenemy_gen(tier: int):
         random_mp = random.randint(40,60)
         random_elemental = random.choice(random_element)
         random_weapon = randweapon_gen(1)
-        random_loot = random.sample(items_tier1, k= random.randint(0,1))
+        #random_loot = random.sample(items_tier1, k= random.randint(0,1))
         #make sure the random xpdrop is tied to overall stats and power
         random_xpdrop = random.randint(50,100)
         random_atk = random.randint(5,10)
@@ -91,7 +91,7 @@ def randenemy_gen(tier: int):
         random_mp = random.randint(61,90)
         random_elemental = random.choice(random_element)
         random_weapon = randweapon_gen(2)
-        random_loot = random.sample(items_tier2, k= random.randint(0,1))
+        #random_loot = random.sample(items_tier2, k= random.randint(0,1))
         #make sure the random xpdrop is tied to overall stats and power
         random_xpdrop = random.randint(101,150)
         random_atk = random.randint(5,10)
@@ -115,7 +115,7 @@ def randenemy_gen(tier: int):
         random_mp = random.randint(91, 120)
         random_elemental = random.choice(random_element)
         random_weapon = randweapon_gen(3)
-        random_loot = random.sample(items_tier3, k=random.randint(0, 2))
+        #random_loot = random.sample(items_tier3, k=random.randint(0, 2))
         # make sure the random xpdrop is tied to overall stats and power
         random_xpdrop = random.randint(151, 200)
         random_atk = random.randint(5, 10)
@@ -135,7 +135,7 @@ def randenemy_gen(tier: int):
             random_spells.append(spell_drawn)
 
     randenemy: Enemy = Enemy(
-        random_name, random_hp, random_mp, random_elemental, random_weapon, [random_loot],
+        random_name, random_hp, random_mp, random_elemental, random_weapon, [],
                              random_xpdrop)
     randenemy.set_stats(random_atk, random_def, random_matk, random_mdef, random_acc, random_eva)
     for item in random_consumables:

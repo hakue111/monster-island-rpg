@@ -1,3 +1,4 @@
+from rpg.room.arena import Arena
 from rpg.room.beach import Beach
 from rpg.room.gambler_stand import GamblerStand
 from rpg.room.hotel import Hotel
@@ -8,4 +9,5 @@ rooms = {
     "gambler_stand": GamblerStand(),
     "hotel": Hotel(),
     "beach": Beach(),
+    "arena": Arena(),
 }
