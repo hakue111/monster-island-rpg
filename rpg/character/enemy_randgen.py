@@ -139,7 +139,7 @@ def randenemy_gen(tier: int):
                              random_xpdrop)
     randenemy.set_stats(random_atk, random_def, random_matk, random_mdef, random_acc, random_eva)
     for item in random_consumables:
-        randenemy.add_consumable(item, random.randint(0, 2), False)
+        randenemy.add_consumable(item, 1, False)
     for spell in random_spells:
         randenemy.learn_spell(spell, False)
 

@@ -1,3 +1,4 @@
+import random
 from time import sleep
 
 from rpg.character import enemy_sheet
@@ -5,7 +6,6 @@ from rpg.character.battle_scene import start_battle
 from rpg.character.outcome import Outcome
 from rpg.game import Game
 from rpg.item import item_sheet
-from rpg.item.item_sheet import robot_chip
 from rpg.magic import magic_sheet
 from rpg.room.room import Room
 from rpg.room.roomobject import RoomObject
@@ -20,7 +20,15 @@ from rpg.room.arena_contests import contest_gen
 class ArenaReceptionist(RoomObject):
     TALK = "Talk to the ARENA Receptionist"
 
+    prizes = [
+        [potion, ether],
+        [hi_potion, hi_ether],
+        [mega_potion, mega_ether, elixir]
+    ]
+
+
 # constructor for interactions with said object:
+
     def __init__(self):
         self.interactions = [
             ArenaReceptionist.TALK,
@@ -70,14 +78,22 @@ class ArenaReceptionist(RoomObject):
 
     def arena_fight(self, game: Game, room: Room, tier: int):
         arena_enemy = contest_gen(tier)
+        counter = 0
         for enemy in arena_enemy:
             result = start_battle(game.hero, enemy, True)
             if result == Outcome.WIN:
                 print_ws("You win!")
+                counter += 1
             elif result == Outcome.LOSS:
                 print_ws("You lost!")
                 break
-                print_ws()
+            if counter == 1:
+                print_ws("Congratulations, you've won the contest!")
+                print_ws("Please take your prize!")
+                prize = random.choice(self.prizes[tier-1])
+                game.hero.add_consumable(prize, 1, True)
+                break
+                #print(game.hero.consumables)
 
 
 

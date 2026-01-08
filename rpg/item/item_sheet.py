@@ -3,27 +3,27 @@ from rpg.item.item import ConsumableItem, KeyItem
 
 # CONSUMABLE ITEMS
 ##TIER 1
-potion: ConsumableItem = ConsumableItem("Potion", "Restores 40 HP.", 1)
+potion: ConsumableItem = ConsumableItem("Potion", "Restores 40 HP.")
 potion.add_effect(RestoreHPEffect(40))
 
-ether: ConsumableItem = ConsumableItem("Ether", "Restores 40 MP.", 1)
+ether: ConsumableItem = ConsumableItem("Ether", "Restores 40 MP.")
 ether.add_effect(RestoreMPEffect(40))
 
 ##TIER 2
-hi_potion: ConsumableItem = ConsumableItem("Hi-Potion", "Restores 60 HP.", 1)
+hi_potion: ConsumableItem = ConsumableItem("Hi-Potion", "Restores 60 HP.")
 hi_potion.add_effect(RestoreHPEffect(60))
 
-hi_ether: ConsumableItem = ConsumableItem("Hi-Ether", "Restores 60 MP.", 1)
+hi_ether: ConsumableItem = ConsumableItem("Hi-Ether", "Restores 60 MP.")
 hi_ether.add_effect(RestoreMPEffect(60))
 
 ##TIER 3
-mega_potion: ConsumableItem = ConsumableItem("Mega-Potion", "Restores 100 HP.", 1)
+mega_potion: ConsumableItem = ConsumableItem("Mega-Potion", "Restores 100 HP.")
 mega_potion.add_effect(RestoreHPEffect(100))
 
-mega_ether: ConsumableItem = ConsumableItem("Mega-Ether", "Restores 100 MP.", 1)
+mega_ether: ConsumableItem = ConsumableItem("Mega-Ether", "Restores 100 MP.")
 mega_ether.add_effect(RestoreMPEffect(100))
 
-elixir: ConsumableItem = ConsumableItem("Elixir", "Restores 100 HP and 100 MP", 1)
+elixir: ConsumableItem = ConsumableItem("Elixir", "Restores 100 HP and 100 MP")
 elixir.add_effect(RestoreHPEffect(100))
 elixir.add_effect(RestoreMPEffect(100))
 

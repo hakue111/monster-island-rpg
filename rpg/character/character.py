@@ -54,7 +54,7 @@ class Character:
 
 
         # give a character an inventory
-        self.consumables: list['ConsumableItem'] = []
+        self.consumables: dict['ConsumableItem', str] = {}
         self.key_items: list['KeyItem'] = []
         self.weapons: list['Weapon'] = []
         self.weapon = weapon_sheet.fists
@@ -90,34 +90,30 @@ class Character:
 
 
     def add_consumable(self, item: 'ConsumableItem', amount: int, print_msg: bool):
-        for existing_item in self.consumables:
-            if existing_item.name == item.name:
-                existing_item.amount += amount
-                if amount > 0 and print_msg:
-                    print(f"Received {item.name} x{amount}!")
-                elif print_msg:
-                    print(f"Lost {amount}x {item.name}!")
-                return
-        if amount > 0:
-            item.amount = amount
-            self.consumables.append(item)
-            if print_msg:
-                print(f"Received {item.name} x{amount}!")
+        current_amount = self.consumables.get(item)
+        if current_amount is None:
+            self.consumables[item] = amount
+        else:
+            new_amount = current_amount + amount
+            self.consumables[item] = new_amount
+        if amount > 0 and print_msg:
+            print(f"Received {item.name} x{amount}!")
+        elif print_msg:
+            print(f"Lost {amount}x {item.name}!")
 
-    def use_consumable(self, index: int):
-        if index < 0 or index >= len(self.consumables):
-            return False
-        self.consumables[index].consume_item(self)
-        self.consumables[index].amount -= 1
-        if self.consumables[index].amount <= 0:
-            del self.consumables[index]
+    def use_consumable(self, item: 'ConsumableItem'):
+        item.consume_item(self)
+        self.consumables[item] -= 1
+        if self.consumables[item] <= 0:
+            self.consumables[item] = 0
         return True
 
     def print_consumables(self):
         print("Inventory: ")
-        for index in range(len(self.consumables)):
-            item = self.consumables[index]
-            print(f"{index + 1}: {item.name} x{item.amount} - {item.description}.")
+        index = 1
+        for item, amount in self.consumables.items():
+            print(f"{index}: {item.name} x{amount} - {item.description}.")
+            index += 1
 
     # basically INVENTORY
     # bc we want to print consumable items in fights, not key items

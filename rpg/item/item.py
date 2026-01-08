@@ -19,10 +19,9 @@ class Item:
 class ConsumableItem(Item):
     def __init__(self,
                  name: str,
-                 description: str,
-                 amount: int
+                 description: str
                  ) -> None:
-        super().__init__(name, description, amount)
+        super().__init__(name, description, amount=1)
         self.effects = []
 
     def add_effect(self, effect: 'Effect') -> None:
@@ -32,8 +31,11 @@ class ConsumableItem(Item):
         for effect in self.effects:
             effect.apply_effect(character, self)
 
+    def __hash__(self):
+        return hash(self.name)
+
     def __str__(self):
-        return f"Consumable Item(name='{self.name}', description={self.description}, amount={self.amount})"
+        return f"Consumable Item(name='{self.name}', description={self.description})"
 
     def __repr__(self):
         return self.__str__()

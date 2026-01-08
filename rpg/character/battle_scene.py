@@ -65,9 +65,9 @@ def fight(hero: Hero, enemy: Enemy, skip_player: bool):
     if not enemy.is_dead():
         enemy_skip = False
         if enemy.hp / enemy.hp_max <= 0.5:
-            for index in range(len(enemy.consumables)):
-                if "Potion" in enemy.consumables[index].name:
-                    enemy.use_consumable(index)
+            for item in enemy.consumables:
+                if "Potion" in item.name:
+                    enemy.use_consumable(item)
                     enemy_skip = True
                     break
         if enemy.mp_max > 0 and enemy.mp / enemy.mp_max <= 0.5:

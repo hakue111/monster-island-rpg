@@ -29,7 +29,7 @@ def chuck_mode(game: Game):
     game.hero.add_consumable(item_sheet.mega_ether, 5, False)
     game.hero.add_consumable(item_sheet.elixir, 5, False)
 
-    game.hero.set_stats(10, 10, 10, 10, 10, 10)
+    game.hero.set_stats(15, 15, 15, 15, 15, 15)
 
 
     #game.hero.add_key_item(item_sheet.robot_chip,1, False)
